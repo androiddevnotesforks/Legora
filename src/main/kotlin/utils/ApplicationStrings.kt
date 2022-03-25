@@ -32,4 +32,13 @@ object ApplicationStrings {
     const val GRADLE_TITLE = "Gradle Plugins"
     const val GRADLE_DESCRIPTION = "Kotlin Language"
 
+    const val KTOR_TITLE = "Ktor Application"
+    const val KTOR_DESCRIPTION = "Kotlin Language"
+
+    const val NEST_JS = "NestJs Application"
+    const val NEST_JS_DESCRIPTION = "TypeScript Language"
+
+    const val SPRING_BOOT = "Spring Boot App"
+    const val SPRING_BOOT_DESCRIPTION_J = "Java Application"
+    const val SPRING_BOOT_DESCRIPTION_K = "Kotlin Application"
 }

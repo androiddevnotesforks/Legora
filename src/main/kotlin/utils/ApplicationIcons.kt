@@ -9,5 +9,7 @@ object ApplicationIcons {
     const val NEXT_ICON = "nextjs.png"
     const val COMPOSE = "jetpack_compose.png"
     const val GRADLE = "gradle.png"
-
+    const val KTOR_APP = "ktor.png"
+    const val NEST_JS = "nestjs.png"
+    const val SPRING_BOOT = "springboot.png"
 }

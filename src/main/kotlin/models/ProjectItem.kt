@@ -17,5 +17,9 @@ data class ProjectItem(
         const val NEXT_JS_APP_TS = "nextjs"
         const val DESKTOP_COMPOSE = "desktopCompose"
         const val GRADLE = "gradle"
+        const val KTOR = "ktor"
+        const val NEST_JS = "nestjs"
+        const val SPRING_J = "spj"
+        const val SPRING_K = "spk"
     }
 }
