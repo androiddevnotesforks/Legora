@@ -8,18 +8,25 @@ import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.*
+import androidx.compose.ui.unit.ExperimentalUnitApi
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
+import androidx.compose.ui.unit.dp
 import utils.ApplicationColors
 import utils.ApplicationProjectsManager
 import utils.ApplicationStrings
 import views.common.HeaderComponent
 import views.components.ProjectCardComponent
-import androidx.compose.ui.window.*
-import androidx.compose.runtime.*
+import utils.ApplicationIcons
+import views.components.CircleIconComponent
 
 @Preview
 @Composable
@@ -33,7 +40,7 @@ fun MainScreenPreview() {
 @Composable
 fun MainScreen(onNextScreenRequest: () -> Unit) {
     val projectsList = ApplicationProjectsManager.getProjectsList()
-    var selectedProjectKey by remember { mutableStateOf("") }
+    val selectedProjectKey = remember { mutableStateOf("") }
     Column(modifier = Modifier.fillMaxWidth().fillMaxHeight().background(ApplicationColors.GRAY_COLOR)) {
         HeaderComponent()
         Column(modifier = Modifier.padding(20.dp)) {
@@ -48,23 +55,36 @@ fun MainScreen(onNextScreenRequest: () -> Unit) {
                     contentPadding = PaddingValues(8.dp)
                 ) {
                     items(projectsList) { item ->
-                        ProjectCardComponent(item, selectedProjectKey) {
-                            selectedProjectKey = it.key
+                        ProjectCardComponent(item, selectedProjectKey.value) {
+                            if (it.key.equals(selectedProjectKey.value)) {
+                                selectedProjectKey.value = ""
+                                return@ProjectCardComponent
+                            }
+
+                            selectedProjectKey.value = it.key
                         }
                     }
                 }
             }
 
-            Column(
-                modifier = Modifier.fillMaxWidth(0.4f).fillMaxHeight().padding(10.dp)
-            ) {
+            if (selectedProjectKey.value.isNotEmpty()) {
                 Column(
-                    verticalArrangement = Arrangement.Bottom,
-                    horizontalAlignment = Alignment.End
+                    modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(20.dp)
                 ) {
-                    Row {
-                        Text("`geretg")
-                        Text("`geretg")
+                    Column(
+                        verticalArrangement = Arrangement.Bottom,
+                        horizontalAlignment = Alignment.End,
+                        modifier = Modifier.fillMaxWidth().fillMaxHeight()
+                    ) {
+                        Row {
+                            CircleIconComponent(ApplicationIcons.INFO_ICON, "Application Information") {
+
+                            }
+                            Spacer(modifier = Modifier.width(20.dp))
+                            CircleIconComponent(ApplicationIcons.NEXT_ARROW, "Next Page") {
+                                onNextScreenRequest()
+                            }
+                        }
                     }
                 }
             }

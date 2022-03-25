@@ -12,4 +12,8 @@ object ApplicationIcons {
     const val KTOR_APP = "ktor.png"
     const val NEST_JS = "nestjs.png"
     const val SPRING_BOOT = "springboot.png"
+
+    const val NEXT_ARROW = "next_arrow.png"
+    const val INFO_ICON = "info.png"
+
 }
