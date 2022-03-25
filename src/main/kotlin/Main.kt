@@ -1,11 +1,7 @@
 // Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 import androidx.compose.desktop.DesktopMaterialTheme
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.material.Button
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import models.ApplicationRoute
@@ -36,7 +32,7 @@ fun App() {
 
 fun main() = application {
     Window(
-        state = WindowState(size = WindowSize(1300.dp, 720.dp)),
+        state = WindowState(size = WindowSize(1600.dp, 820.dp)),
         title = ApplicationStrings.APP_NAME,
         resizable = true,
         onCloseRequest = {
