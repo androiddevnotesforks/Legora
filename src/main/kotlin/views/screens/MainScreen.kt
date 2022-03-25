@@ -28,19 +28,11 @@ import views.components.ProjectCardComponent
 import utils.ApplicationIcons
 import views.components.CircleIconComponent
 
-@Preview
-@Composable
-fun MainScreenPreview() {
-    MainScreen() {
-
-    }
-}
-
 @OptIn(ExperimentalUnitApi::class, ExperimentalFoundationApi::class)
 @Composable
-fun MainScreen(onNextScreenRequest: () -> Unit) {
+fun MainScreen(selectedProject: String, onNextScreenRequest: (String) -> Unit) {
     val projectsList = ApplicationProjectsManager.getProjectsList()
-    val selectedProjectKey = remember { mutableStateOf("") }
+    val selectedProjectKey = remember { mutableStateOf(selectedProject) }
     Column(modifier = Modifier.fillMaxWidth().fillMaxHeight().background(ApplicationColors.GRAY_COLOR)) {
         HeaderComponent()
         Column(modifier = Modifier.padding(20.dp)) {
@@ -82,7 +74,7 @@ fun MainScreen(onNextScreenRequest: () -> Unit) {
                             }
                             Spacer(modifier = Modifier.width(20.dp))
                             CircleIconComponent(ApplicationIcons.NEXT_ARROW, "Next Page") {
-                                onNextScreenRequest()
+                                onNextScreenRequest(selectedProjectKey.value)
                             }
                         }
                     }

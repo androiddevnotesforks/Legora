@@ -8,6 +8,7 @@ import models.ApplicationRoute
 import utils.ApplicationRouterManager
 import utils.ApplicationStrings
 import views.screens.MainScreen
+import views.screens.ProjectInformationScreen
 import views.screens.SplashScreen
 import kotlin.system.exitProcess
 
@@ -16,6 +17,7 @@ import kotlin.system.exitProcess
 fun App() {
     var routerInfoState by remember { mutableStateOf(ApplicationRouterManager.getDefaultRouter()) }
     val routerValue = remember { mutableStateOf(routerInfoState.route) }
+    val selectedProject = remember { mutableStateOf("") }
     DesktopMaterialTheme {
         when (routerInfoState) {
             is ApplicationRoute.SplashScreenRouter -> SplashScreen {
@@ -23,8 +25,14 @@ fun App() {
                 routerValue.value = routerInfoState.route
             }
 
-            is ApplicationRoute.MainScreenRouter -> MainScreen {
+            is ApplicationRoute.MainScreenRouter -> MainScreen(selectedProject.value) {
+                selectedProject.value = it
                 routerInfoState = ApplicationRouterManager.getRouterInformationByRouterKey(routerInfoState.nextRoute)
+            }
+
+            is ApplicationRoute.ApplicationInfoRouter -> ProjectInformationScreen(selectedProject.value, routerInfoState.nextRoute, routerInfoState.prevRoute) {
+                routerInfoState = ApplicationRouterManager.getRouterInformationByRouterKey(it)
+                routerValue.value = routerInfoState.route
             }
         }
     }

@@ -41,4 +41,7 @@ object ApplicationStrings {
     const val SPRING_BOOT = "Spring Boot App"
     const val SPRING_BOOT_DESCRIPTION_J = "Java Application"
     const val SPRING_BOOT_DESCRIPTION_K = "Kotlin Application"
+
+    const val PROJECT_INFO_TITLE = "Project Information Section"
+    const val PROJECT_INFO_DES = "Fill Your Project Information With Input Fields Below"
 }

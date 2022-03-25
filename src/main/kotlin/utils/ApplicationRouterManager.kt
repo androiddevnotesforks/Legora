@@ -10,6 +10,7 @@ object ApplicationRouterManager {
             ApplicationRoute.NO_SCREEN_POSITION -> throw RouterNotFoundException()
             ApplicationRoute.MAIN_SCREEN_ROUTE -> ApplicationRoute.MainScreenRouter()
             ApplicationRoute.SPLASH_SCREEN_ROUTE -> ApplicationRoute.SplashScreenRouter()
+            ApplicationRoute.APP_INFO_SCREEN_ROUTE -> ApplicationRoute.ApplicationInfoRouter()
             else -> throw RouterNotFoundException()
         }
     }
