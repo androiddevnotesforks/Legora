@@ -15,5 +15,5 @@ fun MainScreenPreview() {
 
 @Composable
 fun MainScreen(onNextScreenRequest: () -> Unit) {
-    Text("EHEHHHE")
+    Text("Main Screen")
 }

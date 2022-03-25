@@ -1,6 +1,6 @@
 package models
 
-sealed class ApplicationRoute(val route: Int, val prevRoute: Int, val nextRoute: Int) {
+sealed class ApplicationRoute(var route: Int, var prevRoute: Int, var nextRoute: Int) {
 
     companion object {
         const val NO_SCREEN_POSITION = 0

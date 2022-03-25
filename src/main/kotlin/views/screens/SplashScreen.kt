@@ -4,6 +4,7 @@ import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -65,8 +66,15 @@ fun SplashScreen(onScreenStarted: () -> Unit) {
             Text("Generate Project Configuration, Source Code Directly", color = Color.White, fontSize = TextUnit(17f, TextUnitType.Sp))
             Text("Specify Project Type, Information Without Opening IDE", color = Color.White, fontSize = TextUnit(15f, TextUnitType.Sp))
         }
-    }
 
-    TimeUnit.SECONDS.sleep(2);
-    onScreenStarted()
+        Column(
+            verticalArrangement = Arrangement.Bottom,
+            horizontalAlignment = Alignment.Start,
+            modifier = Modifier.padding(10.dp).align(Alignment.BottomEnd)
+        ) {
+            Button(onClick = onScreenStarted) {
+                Text("Click Now")
+            }
+        }
+    }
 }
