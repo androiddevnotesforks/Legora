@@ -3,6 +3,7 @@ package utils
 object ApplicationStrings {
 
     const val ROUTER_NOT_FOUND_MESSAGE = "No Router Found For Current Requested Router"
+    const val DEPENDENCIES_NOT_FOUND = "No Dependencies Found for Project Key"
     const val APP_NAME = "Legora"
     const val APP_LOGO = "Legora Application Logo"
 

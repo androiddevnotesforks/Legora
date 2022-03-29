@@ -8,6 +8,7 @@ import models.ApplicationRoute
 import utils.ApplicationRouterManager
 import utils.ApplicationStrings
 import views.screens.MainScreen
+import views.screens.ProjectDependenciesScreen
 import views.screens.ProjectInformationScreen
 import views.screens.SplashScreen
 import kotlin.system.exitProcess
@@ -33,6 +34,10 @@ fun App() {
             is ApplicationRoute.ApplicationInfoRouter -> ProjectInformationScreen(selectedProject.value, routerInfoState.nextRoute, routerInfoState.prevRoute) {
                 routerInfoState = ApplicationRouterManager.getRouterInformationByRouterKey(it)
                 routerValue.value = routerInfoState.route
+            }
+
+            is ApplicationRoute.ApplicationDependenciesRouter -> ProjectDependenciesScreen(selectedProject.value, routerInfoState.nextRoute, routerInfoState.prevRoute) {
+
             }
         }
     }
