@@ -4,13 +4,11 @@ import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.runtime.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
+import models.ApplicationDependency
 import models.ApplicationRoute
 import utils.ApplicationRouterManager
 import utils.ApplicationStrings
-import views.screens.MainScreen
-import views.screens.ProjectDependenciesScreen
-import views.screens.ProjectInformationScreen
-import views.screens.SplashScreen
+import views.screens.*
 import kotlin.system.exitProcess
 
 @Composable
@@ -18,7 +16,9 @@ import kotlin.system.exitProcess
 fun App() {
     var routerInfoState by remember { mutableStateOf(ApplicationRouterManager.getDefaultRouter()) }
     val routerValue = remember { mutableStateOf(routerInfoState.route) }
+    val dependenciesValue = remember { mutableStateOf(arrayListOf<ApplicationDependency>()) }
     val selectedProject = remember { mutableStateOf("") }
+    val generatedPath = remember { mutableStateOf("") }
     DesktopMaterialTheme {
         when (routerInfoState) {
             is ApplicationRoute.SplashScreenRouter -> SplashScreen {
@@ -36,8 +36,17 @@ fun App() {
                 routerValue.value = routerInfoState.route
             }
 
-            is ApplicationRoute.ApplicationDependenciesRouter -> ProjectDependenciesScreen(selectedProject.value, routerInfoState.nextRoute, routerInfoState.prevRoute) {
+            is ApplicationRoute.ApplicationDependenciesRouter -> ProjectDependenciesScreen(selectedProject.value, routerInfoState.nextRoute, routerInfoState.prevRoute, {
+                routerValue.value = it
+                routerInfoState = ApplicationRouterManager.getRouterInformationByRouterKey(routerInfoState.nextRoute)
+            }) {
+                dependenciesValue.value = it
+            }
 
+            is ApplicationRoute.ApplicationPathPickerRouter -> GeneratedPathPickerScreen(selectedProject.value, routerInfoState.nextRoute, routerInfoState.prevRoute) { destination: Int, path: String ->
+                generatedPath.value = path
+                routerValue.value = destination
+                routerInfoState = ApplicationRouterManager.getRouterInformationByRouterKey(routerInfoState.nextRoute)
             }
         }
     }

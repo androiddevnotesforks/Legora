@@ -12,6 +12,7 @@ object ApplicationRouterManager {
             ApplicationRoute.SPLASH_SCREEN_ROUTE -> ApplicationRoute.SplashScreenRouter()
             ApplicationRoute.APP_INFO_SCREEN_ROUTE -> ApplicationRoute.ApplicationInfoRouter()
             ApplicationRoute.DEPENDENCIES_SCREEN_ROUTE -> ApplicationRoute.ApplicationDependenciesRouter()
+            ApplicationRoute.APP_PATH_GENERATED_PICKER -> ApplicationRoute.ApplicationPathPickerRouter()
             else -> throw RouterNotFoundException()
         }
     }

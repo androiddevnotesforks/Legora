@@ -46,4 +46,7 @@ object ApplicationStrings {
     const val PROJECT_INFO_TITLE = "Project Information Section"
     const val PROJECT_INFO_DES = "Fill Your Project Information With Input Fields Below"
     const val FIELDS_NOT_FOUND = "Project Fields Not Found For Requested Field.. Please Specify Project Fields in ApplicationInformationManager"
+
+    const val GENERATED_PATH_TITLE = "Pick Your Project Generated Code Path"
+    const val GENERATED_PATH_DESCRIPTION = "Add Application Generated Path to Start Generating the Project Classes, Files"
 }

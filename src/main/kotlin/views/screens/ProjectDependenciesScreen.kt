@@ -7,26 +7,28 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
+import models.ApplicationDependency
 import models.ProjectInformationItem
-import utils.ApplicationDependenciesManager
-import utils.ApplicationInformationManager
-import utils.ApplicationProjectsManager
-import utils.ApplicationStrings
+import utils.*
 import views.common.FooterComponent
 import views.common.HeaderComponent
-import views.components.ProjectCardComponent
-import views.components.ProjectDependencyComponent
-import views.components.SwitchInputComponent
-import views.components.TextInputComponent
+import views.components.*
 
 @OptIn(ExperimentalUnitApi::class)
 @Composable
-fun ProjectDependenciesScreen(projectKey: String, nextRoute: Int, prevRoute: Int, onRouteChangeDestination: (Int) -> Unit) {
+fun ProjectDependenciesScreen(
+    projectKey: String,
+    nextRoute: Int,
+    prevRoute: Int,
+    onRouteChangeDestination: (Int) -> Unit,
+    onDependenciesResult: (ArrayList<ApplicationDependency>) -> Unit
+) {
     val selectedProjectInformation = ApplicationProjectsManager.getProjectsList().filter { it.key.equals(projectKey) }
     val projectDependencies = ApplicationDependenciesManager.getProjectDependenciesByKey(projectKey)
     Column(modifier = Modifier.fillMaxWidth().fillMaxHeight()) {
@@ -48,6 +50,30 @@ fun ProjectDependenciesScreen(projectKey: String, nextRoute: Int, prevRoute: Int
             Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.End) {
                 Box(Modifier.fillMaxWidth(0.4f)) {
                     ProjectCardComponent(selectedProjectInformation[0], projectKey) {}
+                }
+
+                Column(
+                    modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(20.dp)
+                ) {
+                    Column(
+                        verticalArrangement = Arrangement.Bottom,
+                        horizontalAlignment = Alignment.End,
+                        modifier = Modifier.fillMaxWidth().fillMaxHeight()
+                    ) {
+                        Row {
+                            Box(modifier = Modifier.rotate(180f)) {
+                                CircleIconComponent(ApplicationIcons.NEXT_ARROW, "Prev Page") {
+                                    onDependenciesResult(projectDependencies)
+                                    onRouteChangeDestination(prevRoute)
+                                }
+                            }
+
+                            Spacer(modifier = Modifier.width(20.dp))
+                            CircleIconComponent(ApplicationIcons.NEXT_ARROW, "Next Page") {
+                                onRouteChangeDestination(nextRoute)
+                            }
+                        }
+                    }
                 }
             }
         }
