@@ -13,6 +13,7 @@ object ApplicationRouterManager {
             ApplicationRoute.APP_INFO_SCREEN_ROUTE -> ApplicationRoute.ApplicationInfoRouter()
             ApplicationRoute.DEPENDENCIES_SCREEN_ROUTE -> ApplicationRoute.ApplicationDependenciesRouter()
             ApplicationRoute.APP_PATH_GENERATED_PICKER -> ApplicationRoute.ApplicationPathPickerRouter()
+            ApplicationRoute.GENERATE_APP_CLASSES -> ApplicationRoute.ApplicationGeneratorRouter()
             else -> throw RouterNotFoundException()
         }
     }

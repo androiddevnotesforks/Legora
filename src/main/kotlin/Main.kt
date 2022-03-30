@@ -6,6 +6,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import models.ApplicationDependency
 import models.ApplicationRoute
+import models.ProjectInformationItem
 import utils.ApplicationRouterManager
 import utils.ApplicationStrings
 import views.screens.*
@@ -19,6 +20,7 @@ fun App() {
     val dependenciesValue = remember { mutableStateOf(arrayListOf<ApplicationDependency>()) }
     val selectedProject = remember { mutableStateOf("") }
     val generatedPath = remember { mutableStateOf("") }
+    val projectInformationItem = remember { mutableStateOf(arrayListOf<ProjectInformationItem>()) }
     DesktopMaterialTheme {
         when (routerInfoState) {
             is ApplicationRoute.SplashScreenRouter -> SplashScreen {
@@ -31,8 +33,9 @@ fun App() {
                 routerInfoState = ApplicationRouterManager.getRouterInformationByRouterKey(routerInfoState.nextRoute)
             }
 
-            is ApplicationRoute.ApplicationInfoRouter -> ProjectInformationScreen(selectedProject.value, routerInfoState.nextRoute, routerInfoState.prevRoute) {
-                routerInfoState = ApplicationRouterManager.getRouterInformationByRouterKey(it)
+            is ApplicationRoute.ApplicationInfoRouter -> ProjectInformationScreen(selectedProject.value, routerInfoState.nextRoute, routerInfoState.prevRoute) { destination: Int, fields: ArrayList<ProjectInformationItem> ->
+                projectInformationItem.value = fields
+                routerInfoState = ApplicationRouterManager.getRouterInformationByRouterKey(destination)
                 routerValue.value = routerInfoState.route
             }
 
@@ -47,6 +50,10 @@ fun App() {
                 generatedPath.value = path
                 routerValue.value = destination
                 routerInfoState = ApplicationRouterManager.getRouterInformationByRouterKey(routerInfoState.nextRoute)
+            }
+
+            is ApplicationRoute.ApplicationGeneratorRouter -> ProjectGeneratorScreen(selectedProject.value, dependenciesValue.value, projectInformationItem.value, routerInfoState.nextRoute, routerInfoState.prevRoute) {
+
             }
         }
     }

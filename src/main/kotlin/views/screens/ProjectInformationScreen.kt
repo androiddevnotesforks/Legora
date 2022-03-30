@@ -26,17 +26,9 @@ import views.components.ProjectCardComponent
 import views.components.SwitchInputComponent
 import views.components.TextInputComponent
 
-@Preview
-@Composable
-fun ProjectInformationScreenPreview() {
-    ProjectInformationScreen(ProjectItem.SINGLE_APP_ANDROID, 0, 1) {
-
-    }
-}
-
 @OptIn(ExperimentalUnitApi::class)
 @Composable
-fun ProjectInformationScreen(projectKey: String, nextRoute: Int, prevRoute: Int, onRouteChangeDestination: (Int) -> Unit) {
+fun ProjectInformationScreen(projectKey: String, nextRoute: Int, prevRoute: Int, onRouteChangeDestination: (Int, ArrayList<ProjectInformationItem>) -> Unit) {
     val selectedProjectInformation = ApplicationProjectsManager.getProjectsList().filter { it.key.equals(projectKey) }
     val projectFields = ApplicationInformationManager.getFieldsByProjectKey(projectKey)
     Column(modifier = Modifier.fillMaxWidth().fillMaxHeight()) {
@@ -65,9 +57,9 @@ fun ProjectInformationScreen(projectKey: String, nextRoute: Int, prevRoute: Int,
         }
 
         FooterComponent({
-            onRouteChangeDestination(nextRoute)
+            onRouteChangeDestination(nextRoute, projectFields)
         }, {
-            onRouteChangeDestination(prevRoute)
+            onRouteChangeDestination(prevRoute, projectFields)
         })
     }
 }

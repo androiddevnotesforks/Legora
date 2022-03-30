@@ -49,4 +49,7 @@ object ApplicationStrings {
 
     const val GENERATED_PATH_TITLE = "Pick Your Project Generated Code Path"
     const val GENERATED_PATH_DESCRIPTION = "Add Application Generated Path to Start Generating the Project Classes, Files"
+
+    const val PROJECT_GENERATOR_STARTED = "Project Generator Started"
+    const val PROJECT_GENERATOR_STARTED_DESCRIPTION = "Project Generator Started For Given Information ... Classes Will be Generated in Minute"
 }

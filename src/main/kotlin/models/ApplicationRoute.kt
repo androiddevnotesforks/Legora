@@ -10,6 +10,7 @@ sealed class ApplicationRoute(var route: Int, var prevRoute: Int, var nextRoute:
         const val DEPENDENCIES_SCREEN_ROUTE = 4
         const val APP_PATH_GENERATED_PICKER = 6
         const val GENERATE_APP_CLASSES = 7
+        const val SUCCESS_SCREEN_ROUTE = 8
     }
 
     class SplashScreenRouter: ApplicationRoute(SPLASH_SCREEN_ROUTE, NO_SCREEN_POSITION, MAIN_SCREEN_ROUTE)
@@ -17,5 +18,5 @@ sealed class ApplicationRoute(var route: Int, var prevRoute: Int, var nextRoute:
     class ApplicationInfoRouter: ApplicationRoute(APP_INFO_SCREEN_ROUTE, MAIN_SCREEN_ROUTE, DEPENDENCIES_SCREEN_ROUTE)
     class ApplicationDependenciesRouter: ApplicationRoute(DEPENDENCIES_SCREEN_ROUTE, APP_INFO_SCREEN_ROUTE, APP_PATH_GENERATED_PICKER)
     class ApplicationPathPickerRouter: ApplicationRoute(APP_PATH_GENERATED_PICKER, DEPENDENCIES_SCREEN_ROUTE, GENERATE_APP_CLASSES)
-
+    class ApplicationGeneratorRouter: ApplicationRoute(GENERATE_APP_CLASSES, NO_SCREEN_POSITION, SUCCESS_SCREEN_ROUTE)
 }
