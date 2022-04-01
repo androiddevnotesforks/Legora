@@ -4,17 +4,23 @@ dependencies { configuration ->
     rxJavaConfiguration(configuration)
     retrofitConfiguration(configuration)
     lifeCycleConfiguration(configuration)
+    roomConfiguration(configuration)
+    moshiConfiguration(configuration)
+}
 
-    implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
-    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+private void roomConfiguration(configuration) {
+    def RoomConfiguration = rootProject.ext.RoomConfiguration
+    configuration.implementation RoomConfiguration.RoomRunTime
+    configuration.implementation RoomConfiguration.RoomPaging
+    configuration.kapt RoomConfiguration.RoomCompiler
+}
 
-    def room_version = "2.4.1"
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-    implementation "androidx.room:room-paging:2.4.1"
-
-    kapt("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.3.0")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
+private void moshiConfiguration(configuration) {
+    def MoshiConfiguration = rootProject.ext.MoshiConfiguration
+    configuration.implementation MoshiConfiguration.MoshiRetrofitAdapter
+    configuration.implementation MoshiConfiguration.RetrofitCorotinesAdapter
+    configuration.kapt MoshiConfiguration.JvmMetaData
+    configuration.kapt MoshiConfiguration.MoshiCodegen
 }
 
 private void rxJavaConfiguration(configuration) {
