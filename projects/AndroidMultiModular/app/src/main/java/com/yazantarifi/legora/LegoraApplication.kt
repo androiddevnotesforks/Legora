@@ -14,12 +14,16 @@ class LegoraApplication: MultiDexApplication(), Thread.UncaughtExceptionHandler 
 
     override fun onCreate() {
         super.onCreate()
-        FirebaseApp.initializeApp(this)
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
-        FirebaseCrashlytics.getInstance().sendUnsentReports()
-        FirebaseMessaging.getInstance().isAutoInitEnabled = true
-        FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(true)
         registerTimberConfiguration()
+        try {
+            FirebaseApp.initializeApp(this)
+            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
+            FirebaseCrashlytics.getInstance().sendUnsentReports()
+            FirebaseMessaging.getInstance().isAutoInitEnabled = true
+            FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(true)
+        } catch (ex: Exception) {
+            Timber.e(ex)
+        }
     }
 
     override fun uncaughtException(p0: Thread, p1: Throwable) {
