@@ -1,0 +1,33 @@
+
+dependencies { configuration ->
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    rxJavaConfiguration(configuration)
+    retrofitConfiguration(configuration)
+    lifeCycleConfiguration(configuration)
+
+    implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+
+    def room_version = "2.4.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-paging:2.4.1"
+
+    kapt("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.3.0")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
+}
+
+private void rxJavaConfiguration(configuration) {
+    def RxConfiguration = rootProject.ext.RxConfiguration
+    configuration.implementation RxConfiguration.RxJava
+    configuration.implementation RxConfiguration.RxAndroid
+}
+
+private void retrofitConfiguration(configuration) {
+    def DataConfiguration = rootProject.ext.DataConfiguration
+    configuration.implementation DataConfiguration.Retrofit
+    configuration.implementation DataConfiguration.RetrofitRxJavaAdapter
+    configuration.implementation DataConfiguration.RetrofitIntercenptor
+    configuration.implementation DataConfiguration.retrofitGsonConverter
+    configuration.implementation DataConfiguration.Moshi
+}

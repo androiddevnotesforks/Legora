@@ -1,0 +1,16 @@
+
+dependencies { configuration ->
+    implementation project(":data")
+    daggerConfig(configuration)
+    lifeCycleConfiguration(configuration)
+    retrofitConfiguration(configuration)
+}
+
+private void retrofitConfiguration(configuration) {
+    def DataConfiguration = rootProject.ext.DataConfiguration
+    configuration.implementation DataConfiguration.Retrofit
+    configuration.implementation DataConfiguration.RetrofitRxJavaAdapter
+    configuration.implementation DataConfiguration.RetrofitIntercenptor
+    configuration.implementation DataConfiguration.retrofitGsonConverter
+    configuration.implementation DataConfiguration.Moshi
+}
