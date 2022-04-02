@@ -27,7 +27,7 @@ class AndroidApplicationGenerator constructor(
     ) {
         AndroidSettingsGradleGenerator(fields[ProjectInformationItem.NAME] ?: "", isSingleModuleApplication, generatedFilePath, onGeneratedFileListener).execute()
         AndroidLibrariesGradleFileGenerator(generatedFilePath, onGeneratedFileListener).execute()
-//        GradleFileRunnerGenerator(this, generatedFilePath).execute()
+        AndroidGradleRunnerGenerator(generatedFilePath, onGeneratedFileListener).execute()
         GradleFileRunnerBatGenerator(generatedFilePath, onGeneratedFileListener).execute()
         AndroidGradleProperitiesGenerator(generatedFilePath, onGeneratedFileListener).execute()
         AndroidApplicationDetailsGenerator(fields[ProjectInformationItem.PACKAGE] ?: "", generatedFilePath, onGeneratedFileListener).execute()
