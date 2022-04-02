@@ -8,5 +8,7 @@ enum class FileExtention constructor(public val key: String) {
     GRADLE(".gradle"),
     BAT(".bat"),
     EMPTY(""),
-    PROPERTIES(".properties")
+    PROPERTIES(".properties"),
+    PRO(".pro"),
+    JSON(".json")
 }

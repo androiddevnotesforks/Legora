@@ -84,6 +84,7 @@ fun ProjectGeneratorScreen(
                             CircleIconComponent(ApplicationIcons.NEXT_ARROW, "Next Page") {
                                 val applicationGenerator = ApplicationGeneratorManager(generatedProjectPath, { item ->
                                     itemsPath.value.toMutableList().also {
+                                        println(it)
                                         it.add(item)
                                         setIsListUpdated(true)
                                     }

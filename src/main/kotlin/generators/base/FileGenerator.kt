@@ -5,13 +5,12 @@ import java.io.BufferedWriter
 import java.io.File
 import java.io.FileWriter
 
-
 abstract class FileGenerator {
 
     protected fun generateFile(onMessageGenerated: (String) -> Unit) {
         val fileName = getFileName() + getFileExt().key
         try {
-            val file: File = File(getFilePath() + fileName)
+            val file: File = File(getFilePath() + "/" + fileName)
             if (!file.exists()) {
                 file.createNewFile()
             }
