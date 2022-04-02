@@ -1,4 +1,4 @@
-package generators.android.common.modules
+package generators.android.modules
 
 import generators.base.DirectoryGenerator
 
@@ -9,12 +9,12 @@ class AndroidApplicationModulesDirectoriesGenerator constructor(
 ): DirectoryGenerator() {
     override fun execute() {
         if (isSingleModuleApplication) {
-            generateDirectory("${generatedPath.dropLast(1)}/app", onMessageGenerated)
+            generateDirectory("$generatedPath/app", onMessageGenerated)
         } else {
             generateDirectories(arrayListOf(
-                "${generatedPath.dropLast(1)}/app",
-                "${generatedPath.dropLast(1)}/domain",
-                "${generatedPath.dropLast(1)}/data",
+                "$generatedPath/app",
+                "$generatedPath/domain",
+                "$generatedPath/data",
             ), onMessageGenerated)
         }
     }

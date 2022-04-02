@@ -3,10 +3,14 @@ package generators.android
 import generators.android.common.*
 import generators.android.common.gradle.AndroidGradleDirectoriesGenerator
 import generators.android.common.gradle.AndroidGradleWrapperProperitiesGenerator
-import generators.android.common.modules.AndroidApplicationModulesDirectoriesGenerator
-import generators.android.common.modules.app.AndroidAppBuildGradleFileGenerator
-import generators.android.common.modules.data.AndroidDataBuildGradleFileGenerator
-import generators.android.common.modules.domain.AndroidDomainBuildGradleFileGenerator
+import generators.android.modules.AndroidApplicationModulesDirectoriesGenerator
+import generators.android.modules.build.AndroidBuildGradleSingleGenerator
+import generators.android.modules.GoogleServicesFileGenerator
+import generators.android.modules.ProguardRulesGenerator
+import generators.android.modules.app.AndroidAppBuildGradleFileGenerator
+import generators.android.modules.build.AndroidBuildGradleMultiGenerator
+import generators.android.modules.data.AndroidDataBuildGradleFileGenerator
+import generators.android.modules.domain.AndroidDomainBuildGradleFileGenerator
 import generators.base.ProjectGeneratorImplementation
 import models.ApplicationDependency
 import models.ProjectInformationItem
@@ -32,10 +36,21 @@ class AndroidApplicationGenerator constructor(
         AndroidGradleWrapperProperitiesGenerator(generatedFilePath, onGeneratedFileListener).execute()
         AndroidApplicationModulesDirectoriesGenerator(generatedFilePath, isSingleModuleApplication, onGeneratedFileListener).execute()
 
-        AndroidAppBuildGradleFileGenerator(generatedFilePath.dropLast(1) + "/app", onGeneratedFileListener).execute()
+        AndroidAppBuildGradleFileGenerator("$generatedFilePath/app", onGeneratedFileListener).execute()
+        ProguardRulesGenerator("$generatedFilePath/app", onGeneratedFileListener).execute()
+        GoogleServicesFileGenerator("$generatedFilePath/app", onGeneratedFileListener).execute()
         if (!isSingleModuleApplication) {
             AndroidDomainBuildGradleFileGenerator(generatedFilePath.dropLast(1) + "/domain", onGeneratedFileListener).execute()
             AndroidDataBuildGradleFileGenerator(generatedFilePath.dropLast(1) + "/data", onGeneratedFileListener).execute()
+
+            ProguardRulesGenerator("$generatedFilePath/domain", onGeneratedFileListener).execute()
+            ProguardRulesGenerator("$generatedFilePath/data", onGeneratedFileListener).execute()
+        }
+
+        if (isSingleModuleApplication) {
+            AndroidBuildGradleSingleGenerator(generatedFilePath, onGeneratedFileListener).execute()
+        } else {
+            AndroidBuildGradleMultiGenerator(generatedFilePath, onGeneratedFileListener).execute()
         }
 
     }

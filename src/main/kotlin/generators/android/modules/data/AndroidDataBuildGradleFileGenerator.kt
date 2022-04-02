@@ -1,4 +1,4 @@
-package generators.android.common.modules.data
+package generators.android.modules.data
 
 import generators.base.FileGenerator
 import models.FileExtention

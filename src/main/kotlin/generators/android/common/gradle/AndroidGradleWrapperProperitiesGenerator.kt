@@ -22,7 +22,7 @@ class AndroidGradleWrapperProperitiesGenerator constructor(
     }
 
     override fun getFileExt(): FileExtention = FileExtention.PROPERTIES
-    override fun getFilePath(): String = pathGeneratedFile
+    override fun getFilePath(): String = "$pathGeneratedFile/gradle/wrapper"
 
     override fun execute() {
         generateFile {

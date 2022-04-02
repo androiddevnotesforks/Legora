@@ -8,8 +8,8 @@ class AndroidGradleDirectoriesGenerator constructor(
 ): DirectoryGenerator() {
     override fun execute() {
         generateDirectories(arrayListOf(
-            generatedPath + "gradle",
-            generatedPath + "gradle" + "/" + "wrapper"
+            "$generatedPath/gradle",
+            "$generatedPath/gradle/wrapper"
         ), onMessageGenerated)
     }
 }

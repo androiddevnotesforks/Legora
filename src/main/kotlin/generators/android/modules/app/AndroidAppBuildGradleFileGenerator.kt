@@ -1,4 +1,4 @@
-package generators.android.common.modules.app
+package generators.android.modules.app
 
 import generators.base.FileGenerator
 import models.FileExtention
@@ -94,7 +94,7 @@ class AndroidAppBuildGradleFileGenerator constructor(
                 "            ext.enableCrashlytics = false\n" +
                 "            ext.alwaysUpdateBuildId = false\n" +
                 "            proguardFiles getDefaultProguardFile(\"$$PROGUARD\"), \"$$PROGUARD_FILE\"\n" +
-                "            buildConfigField \"String\", \"IS_GSM\", \"\\\"$$\\\"\"\n" +
+                "            buildConfigField \"String\", \"IS_GSM\", \"\\\"$$IS_GSM\\\"\"\n" +
                 "        }\n" +
                 "\n" +
                 "        release {\n" +
@@ -277,7 +277,7 @@ class AndroidAppBuildGradleFileGenerator constructor(
 
     override fun execute() {
         generateFile {
-
+            onMessageGenerated(it)
         }
     }
 
