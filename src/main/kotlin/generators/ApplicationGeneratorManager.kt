@@ -1,10 +1,13 @@
 package generators
 
+import generators.android.AndroidApplicationGenerator
 import models.ApplicationDependency
 import models.ProjectInformationItem
-import java.util.concurrent.TimeUnit
+import models.ProjectItem
+import utils.ApplicationInformationManager
 
 class ApplicationGeneratorManager constructor(
+    private val generatedFilePath: String,
     private val onGeneratedFileListener: (String) -> Unit,
     private val onProjectFinishedListener: () -> Unit
 ) {
@@ -14,14 +17,11 @@ class ApplicationGeneratorManager constructor(
         dependencies: ArrayList<ApplicationDependency>,
         fields: ArrayList<ProjectInformationItem>
     ) {
-        onGeneratedFileListener("ajeksfnsrf")
-        TimeUnit.SECONDS.sleep(1);
-        onGeneratedFileListener("ajeksfnsrf")
-        TimeUnit.SECONDS.sleep(1);
-        onGeneratedFileListener("ajeksfnsrf")
-        TimeUnit.SECONDS.sleep(1);
-        onGeneratedFileListener("ajeksfnsrf")
-        TimeUnit.SECONDS.sleep(1);
+        val projectFields = ApplicationInformationManager.getProjectFields(fields)
+        when (projectKey) {
+            ProjectItem.SINGLE_APP_ANDROID -> AndroidApplicationGenerator(generatedFilePath, true, onGeneratedFileListener).generateProject(dependencies, projectFields)
+            ProjectItem.MULTI_APP_ANDROID -> AndroidApplicationGenerator(generatedFilePath, false, onGeneratedFileListener).generateProject(dependencies, projectFields)
+        }
     }
 
 }

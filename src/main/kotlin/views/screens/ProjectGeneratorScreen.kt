@@ -33,6 +33,7 @@ import java.util.concurrent.TimeUnit
 @Composable
 fun ProjectGeneratorScreen(
     projectKey: String,
+    generatedProjectPath: String,
     dependencies: ArrayList<ApplicationDependency>,
     fields: ArrayList<ProjectInformationItem>,
     nextRoute: Int,
@@ -81,7 +82,7 @@ fun ProjectGeneratorScreen(
                         Row {
                             Spacer(modifier = Modifier.width(20.dp))
                             CircleIconComponent(ApplicationIcons.NEXT_ARROW, "Next Page") {
-                                val applicationGenerator = ApplicationGeneratorManager({ item ->
+                                val applicationGenerator = ApplicationGeneratorManager(generatedProjectPath, { item ->
                                     itemsPath.value.toMutableList().also {
                                         it.add(item)
                                         setIsListUpdated(true)

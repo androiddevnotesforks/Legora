@@ -1,120 +1,96 @@
 ext {
 
-    //Versions
-    MultiDexAppV = "1.0.3"
-    TimberV = "4.7.1"
-    LeakCanaryV = "2.0-alpha-1"
-    SupportLibV = "1.0.0"
-    KotlinV = "1.3.50"
-    FrescoV = "2.1.0"
-    CoroutinesV = "1.3.3"
-    NavigationFragmentV = "2.4.0"
-    ConstraintlayoutV = "2.0.0-beta4"
-    RxJavaV = "2.2.11"
-    RxAndroidV = "2.1.1"
-    RetrofitV = "2.6.1"
-    RoomV = "2.2.3"
-    LifeCycleV = "2.5.0-alpha01"
-    googlePlayServicesV = "16.0.0"
-    EsspressoV = "3.2.0"
-    RunnerV = "1.2.0"
-    JunitV = "4.12"
-    daggerV = "2.24"
-    VaniteV = "2.2.1"
-    RetrofitiInterceptorV = "3.12.1"
-    RetrofitGsonAdapterV = "2.5.0"
-
     ApplicationConfiguration = [
-            Timber                   : "com.jakewharton.timber:timber:$TimberV",
-            MultiDexApp              : "com.android.support:multidex:$MultiDexAppV",
-            LeakCanaryAndroid        : "com.squareup.leakcanary:leakcanary-android:$LeakCanaryV",
-            LeakCanary               : "com.squareup.leakcanary:leaksentry:$LeakCanaryV",
-            KotlinJdk                : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$KotlinV",
+            Timber                   : "com.jakewharton.timber:timber:4.7.1",
+            MultiDexApp              : "com.android.support:multidex:1.0.3",
+            LeakCanaryAndroid        : "com.squareup.leakcanary:leakcanary-android:2.0-alpha-1",
+            LeakCanary               : "com.squareup.leakcanary:leaksentry:2.0-alpha-1",
+            KotlinJdk                : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.50",
     ]
 
     KotlinCoroutinesConfiguration = [
-            Coroutines       : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$CoroutinesV",
-            AndroidCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$CoroutinesV"
+            Coroutines       : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3",
+            AndroidCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3"
     ]
 
     UiConfiguration = [
-            RecyclerView      : "androidx.recyclerview:recyclerview:$SupportLibV",
-            SupportCompat     : "com.android.support:support-compat:$SupportLibV",
-            SupportCore       : "com.android.support:support-core-utils:$SupportLibV",
-            SupportCoreUi     : "com.android.support:support-core-ui:$SupportLibV",
-            SupportFragment   : "com.android.support:support-fragment:$SupportLibV",
+            RecyclerView      : "androidx.recyclerview:recyclerview:1.0.0",
+            SupportCompat     : "com.android.support:support-compat:1.0.0",
+            SupportCore       : "com.android.support:support-core-utils:1.0.0",
+            SupportCoreUi     : "com.android.support:support-core-ui:1.0.0",
+            SupportFragment   : "com.android.support:support-fragment:1.0.0",
             AndroidCore       : "androidx.core:core-ktx:1.7.0",
-            CardView          : "androidx.cardview:cardview:$SupportLibV",
+            CardView          : "androidx.cardview:cardview:1.0.0",
             AppCompat         : "androidx.appcompat:appcompat:1.4.1",
             GoogleMaterial    : "com.google.android.material:material:1.6.0-alpha02",
-            Constraintlayout  : "androidx.constraintlayout:constraintlayout:$ConstraintlayoutV",
-            NavigationFragment: "androidx.navigation:navigation-fragment-ktx:$NavigationFragmentV",
-            NavigationUI      : "androidx.navigation:navigation-ui-ktx:$NavigationFragmentV",
+            Constraintlayout  : "androidx.constraintlayout:constraintlayout:2.0.0-beta4",
+            NavigationFragment: "androidx.navigation:navigation-fragment-ktx:2.4.0",
+            NavigationUI      : "androidx.navigation:navigation-ui-ktx:2.4.0",
             FragmentKtx: "androidx.fragment:fragment-ktx:1.4.1",
             Glide: "com.github.bumptech.glide:glide:4.12.0",
             GlideAnnotations: "com.github.bumptech.glide:compiler:4.12.0"
     ]
 
     RxConfiguration = [
-            RxJava   : "io.reactivex.rxjava2:rxjava:$RxJavaV",
-            RxAndroid: "io.reactivex.rxjava2:rxandroid:$RxAndroidV"
+            RxJava   : "io.reactivex.rxjava2:rxjava:2.2.11",
+            RxAndroid: "io.reactivex.rxjava2:rxandroid:2.1.1"
     ]
 
     DataConfiguration = [
             Retrofit             : "com.squareup.retrofit2:retrofit:2.9.0",
             RetrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava2:2.9.0",
-            RetrofitIntercenptor : "com.squareup.okhttp3:logging-interceptor:$RetrofitiInterceptorV",
-            retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$RetrofitGsonAdapterV",
+            RetrofitIntercenptor : "com.squareup.okhttp3:logging-interceptor:3.12.1",
+            retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:2.5.0",
             Moshi                : "com.squareup.moshi:moshi-kotlin:1.13.0"
     ]
 
     RoomConfiguration = [
-            RoomRuntime : "androidx.room:room-runtime:$RoomV",
-            RoomCompiler: "androidx.room:room-compiler:$RoomV",
-            RoomKotlin  : "androidx.room:room-ktx:$RoomV",
-            RoomRxJava  : "androidx.room:room-rxjava2:$RoomV"
+            RoomRuntime : "androidx.room:room-runtime:2.2.3",
+            RoomCompiler: "androidx.room:room-compiler:2.2.3",
+            RoomKotlin  : "androidx.room:room-ktx:2.2.3",
+            RoomRxJava  : "androidx.room:room-rxjava2:2.2.3"
     ]
 
     LifeCycleConfiguration = [
             LifecycleViewModel  : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0-alpha01",
-            LifecycleExtensions : "androidx.lifecycle:lifecycle-livedata-ktx:$LifeCycleV",
+            LifecycleExtensions : "androidx.lifecycle:lifecycle-livedata-ktx:2.5.0-alpha01",
             LifecycleRuntime    : "androidx.lifecycle:lifecycle-runtime-ktx:2.5.0-alpha01",
             LifecycleLiveData   : "androidx.lifecycle:lifecycle-livedata-ktx:2.5.0-alpha01",
-            LifecycleCommon     : "androidx.lifecycle:lifecycle-common:$LifeCycleV",
-            LifeCycleSavedState: "androidx.lifecycle:lifecycle-viewmodel-savedstate:$LifeCycleV"
+            LifecycleCommon     : "androidx.lifecycle:lifecycle-common:2.5.0-alpha01",
+            LifeCycleSavedState: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.0-alpha01"
     ]
 
     GooglePlayServices = [
-            GoogleMaps     : "com.google.android.gms:play-services-maps:${googlePlayServicesV}",
-            GooglePlaces   : "com.google.android.gms:play-services-places:${googlePlayServicesV}",
-            GoogleGcm      : "com.google.android.gms:play-services-gcm:${googlePlayServicesV}",
-            GoogleLocations: "com.google.android.gms:play-services-location:${googlePlayServicesV}"
+            GoogleMaps     : "com.google.android.gms:play-services-maps:16.0.0",
+            GooglePlaces   : "com.google.android.gms:play-services-places:16.0.0",
+            GoogleGcm      : "com.google.android.gms:play-services-gcm:16.0.0",
+            GoogleLocations: "com.google.android.gms:play-services-location:16.0.0"
     ]
 
     TestingConfiguration = [
-            Esspresso: "androidx.test.espresso:espresso-core:$EsspressoV",
-            Runner   : "androidx.test:runner:$RunnerV",
-            Junit    : "junit:junit:$JunitV"
+            Esspresso: "androidx.test.espresso:espresso-core:3.2.0",
+            Runner   : "androidx.test:runner:1.2.0",
+            Junit    : "junit:junit:4.12"
     ]
 
     DependenciesInjection = [
-            Dagger: "com.google.dagger:dagger:$daggerV",
-            DaggerCompiler : "com.google.dagger:dagger-compiler:$daggerV",
-            DaggerAndroid : "com.google.dagger:dagger-android:$daggerV",
-            DaggerAndroidSupport : "com.google.dagger:dagger-android-support:$daggerV",
-            DaggerAndroidProcessor: "com.google.dagger:dagger-android-processor:$daggerV",
+            Dagger: "com.google.dagger:dagger:2.24",
+            DaggerCompiler : "com.google.dagger:dagger-compiler:2.24",
+            DaggerAndroid : "com.google.dagger:dagger-android:2.24",
+            DaggerAndroidSupport : "com.google.dagger:dagger-android-support:2.24",
+            DaggerAndroidProcessor: "com.google.dagger:dagger-android-processor:2.24",
             Hilt: "com.google.dagger:hilt-android:2.38.1",
             HiltCompiler: "com.google.dagger:hilt-compiler:2.38.1"
     ]
 
     VaniteConfiguration = [
-            VaniteUserInterface : "com.yazantarifi:Vanite-ui:${VaniteV}",
-            VaniteUserInterfaceBinding : "com.yazantarifi:Vanite-ui-binding:${VaniteV}",
-            VanitePermissions : "com.yazantarifi:Vanite-permissions:$VaniteV",
-            VaniteCore : "com.yazantarifi:Vanite:$VaniteV",
-            VaniteData: "com.yazantarifi:Vanite-data:$VaniteV",
-            VaniteExtras: "com.yazantarifi:Vanite-utils:$VaniteV",
-            VanitePrefs: "com.yazantarifi:Vanite-prefs:$VaniteV"
+            VaniteUserInterface : "com.yazantarifi:Vanite-ui:1.0.0",
+            VaniteUserInterfaceBinding : "com.yazantarifi:Vanite-ui-binding:1.0.0",
+            VanitePermissions : "com.yazantarifi:Vanite-permissions:1.0.0",
+            VaniteCore : "com.yazantarifi:Vanite:1.0.0",
+            VaniteData: "com.yazantarifi:Vanite-data:1.0.0",
+            VaniteExtras: "com.yazantarifi:Vanite-utils:1.0.0",
+            VanitePrefs: "com.yazantarifi:Vanite-prefs:1.0.0"
     ]
 
     FirebaseConfiguration = [

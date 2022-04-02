@@ -52,7 +52,7 @@ fun App() {
                 routerInfoState = ApplicationRouterManager.getRouterInformationByRouterKey(routerInfoState.nextRoute)
             }
 
-            is ApplicationRoute.ApplicationGeneratorRouter -> ProjectGeneratorScreen(selectedProject.value, dependenciesValue.value, projectInformationItem.value, routerInfoState.nextRoute, routerInfoState.prevRoute) {
+            is ApplicationRoute.ApplicationGeneratorRouter -> ProjectGeneratorScreen(selectedProject.value, generatedPath.value, dependenciesValue.value, projectInformationItem.value, routerInfoState.nextRoute, routerInfoState.prevRoute) {
 
             }
         }
