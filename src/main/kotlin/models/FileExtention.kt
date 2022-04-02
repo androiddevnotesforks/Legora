@@ -10,5 +10,6 @@ enum class FileExtention constructor(public val key: String) {
     EMPTY(""),
     PROPERTIES(".properties"),
     PRO(".pro"),
-    JSON(".json")
+    JSON(".json"),
+    XML(".xml")
 }

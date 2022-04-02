@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.ExperimentalUnitApi
@@ -17,11 +18,13 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import models.ProjectInformationItem
 import models.ProjectItem
+import utils.ApplicationIcons
 import utils.ApplicationInformationManager
 import utils.ApplicationProjectsManager
 import utils.ApplicationStrings
 import views.common.FooterComponent
 import views.common.HeaderComponent
+import views.components.CircleIconComponent
 import views.components.ProjectCardComponent
 import views.components.SwitchInputComponent
 import views.components.TextInputComponent
@@ -53,13 +56,30 @@ fun ProjectInformationScreen(projectKey: String, nextRoute: Int, prevRoute: Int,
                 Box(Modifier.fillMaxWidth(0.4f)) {
                     ProjectCardComponent(selectedProjectInformation[0], projectKey) {}
                 }
+
+                Column(
+                    modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(20.dp)
+                ) {
+                    Column(
+                        verticalArrangement = Arrangement.Bottom,
+                        horizontalAlignment = Alignment.End,
+                        modifier = Modifier.fillMaxWidth().fillMaxHeight()
+                    ) {
+                        Row {
+                            Box(modifier = Modifier.rotate(180f)) {
+                                CircleIconComponent(ApplicationIcons.NEXT_ARROW, "Prev Page") {
+                                    onRouteChangeDestination(prevRoute, projectFields)
+                                }
+                            }
+
+                            Spacer(modifier = Modifier.width(20.dp))
+                            CircleIconComponent(ApplicationIcons.NEXT_ARROW, "Next Page") {
+                                onRouteChangeDestination(nextRoute, projectFields)
+                            }
+                        }
+                    }
+                }
             }
         }
-
-        FooterComponent({
-            onRouteChangeDestination(nextRoute, projectFields)
-        }, {
-            onRouteChangeDestination(prevRoute, projectFields)
-        })
     }
 }

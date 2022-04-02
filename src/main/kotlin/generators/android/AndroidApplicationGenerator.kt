@@ -8,6 +8,7 @@ import generators.android.modules.build.AndroidBuildGradleSingleGenerator
 import generators.android.modules.GoogleServicesFileGenerator
 import generators.android.modules.ProguardRulesGenerator
 import generators.android.modules.app.AndroidAppBuildGradleFileGenerator
+import generators.android.modules.app.AndroidAppManifestGenerator
 import generators.android.modules.build.AndroidBuildGradleMultiGenerator
 import generators.android.modules.data.AndroidDataBuildGradleFileGenerator
 import generators.android.modules.domain.AndroidDomainBuildGradleFileGenerator
@@ -39,6 +40,7 @@ class AndroidApplicationGenerator constructor(
         AndroidAppBuildGradleFileGenerator("$generatedFilePath/app", onGeneratedFileListener).execute()
         ProguardRulesGenerator("$generatedFilePath/app", onGeneratedFileListener).execute()
         GoogleServicesFileGenerator("$generatedFilePath/app", onGeneratedFileListener).execute()
+        AndroidAppManifestGenerator(fields[ProjectInformationItem.PACKAGE] ?: "", fields[ProjectInformationItem.NAME] ?: "", generatedFilePath, onGeneratedFileListener).execute()
         if (!isSingleModuleApplication) {
             AndroidDomainBuildGradleFileGenerator(generatedFilePath.dropLast(1) + "/domain", onGeneratedFileListener).execute()
             AndroidDataBuildGradleFileGenerator(generatedFilePath.dropLast(1) + "/data", onGeneratedFileListener).execute()
