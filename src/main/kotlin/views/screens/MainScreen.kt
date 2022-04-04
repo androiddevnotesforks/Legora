@@ -69,9 +69,9 @@ fun MainScreen(selectedProject: String, onNextScreenRequest: (String) -> Unit) {
                         modifier = Modifier.fillMaxWidth().fillMaxHeight()
                     ) {
                         Row {
-                            CircleIconComponent(ApplicationIcons.INFO_ICON, "Application Information") {
-
-                            }
+//                            CircleIconComponent(ApplicationIcons.INFO_ICON, "Application Information") {
+//
+//                            }
                             Spacer(modifier = Modifier.width(20.dp))
                             CircleIconComponent(ApplicationIcons.NEXT_ARROW, "Next Page") {
                                 onNextScreenRequest(selectedProjectKey.value)

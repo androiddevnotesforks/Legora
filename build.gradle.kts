@@ -19,8 +19,7 @@ repositories {
 dependencies {
     implementation(compose.desktop.currentOs)
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.21")
-    implementation("com.google.guava:guava:31.1-jre")
-    implementation(files("build/classes/kotlin/main"))
+    implementation("io.coil-kt:coil-compose:2.0.0-rc01")
 }
 
 tasks.withType<KotlinCompile> {
