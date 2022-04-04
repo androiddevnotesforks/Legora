@@ -12,10 +12,10 @@ class ProjectInformationItem(
         const val TYPE_SWITCH = 2
 
         // Project Keys
-        const val NAME = "name"
+        const val NAME = "Name"
         const val PACKAGE = "package"
-        const val POPULAR_DEPENDENCIES = "popularDependencies"
-        const val VIEW_BINDING = "viewBinding"
+        const val WEBSITE_URL = "url"
+        const val VERSION = "Version"
         const val SUPPORT_FLAVORS = "supportFlavors"
         const val SUPPORT_DATABASE = "supportedDatabase"
     }

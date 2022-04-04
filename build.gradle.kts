@@ -19,7 +19,6 @@ repositories {
 dependencies {
     implementation(compose.desktop.currentOs)
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.21")
-    implementation("io.coil-kt:coil-compose:2.0.0-rc01")
 }
 
 tasks.withType<KotlinCompile> {
