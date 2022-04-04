@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import utils.ApplicationIcons
 import utils.ApplicationStrings
+import views.components.CircleColorIconComponent
 
 @Preview
 @Composable
@@ -67,8 +68,8 @@ fun SplashScreen(onScreenStarted: () -> Unit) {
             horizontalAlignment = Alignment.Start,
             modifier = Modifier.padding(10.dp).align(Alignment.BottomEnd)
         ) {
-            Button(onClick = onScreenStarted) {
-                Text("Click Now")
+            CircleColorIconComponent(ApplicationIcons.NEXT_ARROW_RED, "Next Button", Color.White) {
+                onScreenStarted()
             }
         }
     }

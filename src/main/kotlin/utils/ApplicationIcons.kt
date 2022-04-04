@@ -15,5 +15,7 @@ object ApplicationIcons {
 
     const val NEXT_ARROW = "next_arrow.png"
     const val INFO_ICON = "info.png"
+    const val NEXT_ARROW_RED = "next_arrow_red.png"
+    const val ROUNDED_ICON = "rounded_icon.png"
 
 }

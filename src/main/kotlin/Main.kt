@@ -2,11 +2,15 @@
 import androidx.compose.desktop.DesktopMaterialTheme
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.runtime.*
+import androidx.compose.ui.res.loadImageBitmap
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.useResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import models.ApplicationDependency
 import models.ApplicationRoute
 import models.ProjectInformationItem
+import utils.ApplicationIcons
 import utils.ApplicationRouterManager
 import utils.ApplicationStrings
 import views.screens.*
@@ -64,6 +68,7 @@ fun main() = application {
         state = WindowState(size = WindowSize(1600.dp, 820.dp)),
         title = ApplicationStrings.APP_NAME,
         resizable = true,
+        icon = painterResource(ApplicationIcons.ROUNDED_ICON),
         onCloseRequest = {
             exitProcess(0)
         },
