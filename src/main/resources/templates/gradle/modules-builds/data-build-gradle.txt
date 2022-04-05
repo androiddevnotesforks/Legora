@@ -1,0 +1,39 @@
+
+dependencies { configuration ->
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    rxJavaConfiguration(configuration)
+    retrofitConfiguration(configuration)
+    lifeCycleConfiguration(configuration)
+    roomConfiguration(configuration)
+    moshiConfiguration(configuration)
+}
+
+private void roomConfiguration(configuration) {
+    def RoomConfiguration = rootProject.ext.RoomConfiguration
+    configuration.implementation RoomConfiguration.RoomRunTime
+    configuration.implementation RoomConfiguration.RoomPaging
+    configuration.kapt RoomConfiguration.RoomCompiler
+}
+
+private void moshiConfiguration(configuration) {
+    def MoshiConfiguration = rootProject.ext.MoshiConfiguration
+    configuration.implementation MoshiConfiguration.MoshiRetrofitAdapter
+    configuration.implementation MoshiConfiguration.RetrofitCorotinesAdapter
+    configuration.kapt MoshiConfiguration.JvmMetaData
+    configuration.kapt MoshiConfiguration.MoshiCodegen
+}
+
+private void rxJavaConfiguration(configuration) {
+    def RxConfiguration = rootProject.ext.RxConfiguration
+    configuration.implementation RxConfiguration.RxJava
+    configuration.implementation RxConfiguration.RxAndroid
+}
+
+private void retrofitConfiguration(configuration) {
+    def DataConfiguration = rootProject.ext.DataConfiguration
+    configuration.implementation DataConfiguration.Retrofit
+    configuration.implementation DataConfiguration.RetrofitRxJavaAdapter
+    configuration.implementation DataConfiguration.RetrofitIntercenptor
+    configuration.implementation DataConfiguration.retrofitGsonConverter
+    configuration.implementation DataConfiguration.Moshi
+}

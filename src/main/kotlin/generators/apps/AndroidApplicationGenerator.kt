@@ -18,10 +18,10 @@ class AndroidApplicationGenerator constructor(
         generateGradleDirectory()
         generateRootFiles(packageName)
         generateSettingsFile(projectName)
-        generateModule("app", packageName)
+        generateModule("app", packageName, projectName)
         if (!isSingleModuleApplication) {
-            generateModule("data", packageName)
-            generateModule("domain", packageName)
+            generateModule("data", packageName, projectName)
+            generateModule("domain", packageName, projectName)
         }
     }
 
@@ -55,7 +55,7 @@ class AndroidApplicationGenerator constructor(
         }
     }
 
-    private fun generateModule(name: String, packageName: String) {
+    private fun generateModule(name: String, packageName: String, projectName: String) {
         generateDirectory("$generatedPath/$name", onGeneratedFileListener)
         generateDirectory("$generatedPath/$name/src", onGeneratedFileListener)
 
@@ -91,6 +91,14 @@ class AndroidApplicationGenerator constructor(
         }
 
         generateDirectory("$generatedPath/$name/src/main/java$createdPackageName/$name", onGeneratedFileListener)
+
+        // Generate Root Files
+        generateFile("build", getFileContent("templates/gradle/modules-builds/$name-build-gradle.txt").replace("#{Name}", projectName), FileExtention.GRADLE, "$generatedPath/$name", onGeneratedFileListener)
+        generateFile("proguard-rules", getFileContent("templates/configurations/android-proguard-rules.txt"), FileExtention.PRO, "$generatedPath/$name", onGeneratedFileListener)
+        generateFile("AndroidManifest", getFileContent("templates/xml/$name-android-manifest.txt").replace("#{Name}", "$packageName.$name"), FileExtention.XML, "$generatedPath/$name/src/main", onGeneratedFileListener)
+        if (name.equals("app")) {
+            generateFile("google-services", getFileContent("templates/configurations/android-google-services.txt"), FileExtention.JSON, "$generatedPath/$name", onGeneratedFileListener)
+        }
     }
 
 }
