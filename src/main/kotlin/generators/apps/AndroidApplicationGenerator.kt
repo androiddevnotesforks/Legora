@@ -91,6 +91,14 @@ class AndroidApplicationGenerator constructor(
         }
 
         generateDirectory("$generatedPath/$name/src/main/java$createdPackageName/$name", onGeneratedFileListener)
+        generateDirectory("$generatedPath/$name/src/main/java$createdPackageName/$name/screens", onGeneratedFileListener)
+        generateDirectory("$generatedPath/$name/src/main/java$createdPackageName/$name/utils", onGeneratedFileListener)
+
+        // Kotlin Classes
+        generateFile(projectName + "Application", getFileContent("templates/android/android-app-class.txt").replace("#{Package}", packageName).replace("#{Name}", projectName), FileExtention.KOTLIN, "$generatedPath/$name/src/main/java$createdPackageName/$name", onGeneratedFileListener)
+        generateFile("SplashScreen", getFileContent("templates/android/android-splash-screen.txt").replace("#{Package}", packageName), FileExtention.KOTLIN, "$generatedPath/$name/src/main/java$createdPackageName/$name/screens", onGeneratedFileListener)
+        generateFile("ApplicationLinkScreen", getFileContent("templates/android/android-splash-screen.txt").replace("#{Package}", packageName), FileExtention.KOTLIN, "$generatedPath/$name/src/main/java$createdPackageName/$name/screens", onGeneratedFileListener)
+        generateFile("ApplicationLinkScreen", getFileContent("templates/android/android-timber.txt").replace("#{Package}", packageName), FileExtention.KOTLIN, "$generatedPath/$name/src/main/java$createdPackageName/$name/utils", onGeneratedFileListener)
 
         // Generate Root Files
         generateFile("build", getFileContent("templates/gradle/modules-builds/$name-build-gradle.txt").replace("#{Name}", projectName), FileExtention.GRADLE, "$generatedPath/$name", onGeneratedFileListener)
@@ -98,7 +106,22 @@ class AndroidApplicationGenerator constructor(
         generateFile("AndroidManifest", getFileContent("templates/xml/$name-android-manifest.txt").replace("#{Name}", "$packageName.$name"), FileExtention.XML, "$generatedPath/$name/src/main", onGeneratedFileListener)
         if (name.equals("app")) {
             generateFile("google-services", getFileContent("templates/configurations/android-google-services.txt"), FileExtention.JSON, "$generatedPath/$name", onGeneratedFileListener)
+            generateValuesFiles(projectName)
         }
+    }
+
+    private fun generateValuesFiles(projectName: String) {
+        generateFile("splash_screen_background", getFileContent("templates/android/android-splash-screen-theme.txt"), FileExtention.XML, "$generatedPath/app/src/main/res/drawable", onGeneratedFileListener)
+        generateFile("activity_main", getFileContent("templates/android/main-screen-layout.txt"), FileExtention.XML, "$generatedPath/app/src/main/res/layout", onGeneratedFileListener)
+
+        generateFile("colors", getFileContent("templates/android/android-colors.txt"), FileExtention.XML, "$generatedPath/app/src/main/res/values", onGeneratedFileListener)
+        generateFile("colors", getFileContent("templates/android/android-colors.txt"), FileExtention.XML, "$generatedPath/app/src/main/res/values-night", onGeneratedFileListener)
+
+        generateFile("themes", getFileContent("templates/android/android-theme.txt"), FileExtention.XML, "$generatedPath/app/src/main/res/values", onGeneratedFileListener)
+        generateFile("themes", getFileContent("templates/android/android-theme.txt"), FileExtention.XML, "$generatedPath/app/src/main/res/values-night", onGeneratedFileListener)
+
+        generateFile("strings", getFileContent("templates/android/android-strings.txt").replace("#{Name}", projectName), FileExtention.XML, "$generatedPath/app/src/main/res/values", onGeneratedFileListener)
+        generateFile("strings", getFileContent("templates/android/android-strings.txt").replace("#{Name}", projectName), FileExtention.XML, "$generatedPath/app/src/main/res/values-ar", onGeneratedFileListener)
     }
 
 }
