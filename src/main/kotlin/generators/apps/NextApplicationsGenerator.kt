@@ -1,4 +1,4 @@
-package generators
+package generators.apps
 
 import generators.base.ProjectGeneratorImplementation
 import generators.base.TemplatingFilesGenerator

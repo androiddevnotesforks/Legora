@@ -1,6 +1,7 @@
 package generators
 
-import generators.android.AndroidApplicationGenerator
+import generators.apps.AndroidApplicationGenerator
+import generators.apps.NextApplicationsGenerator
 import models.ApplicationDependency
 import models.ProjectInformationItem
 import models.ProjectItem
