@@ -5,6 +5,7 @@ enum class FileExtention constructor(public val key: String) {
     JAVA(".java"),
     JAVASCRIPT(".js"),
     TYPESCRIPT(".ts"),
+    TYPESCRIPT_TSX(".tsx"),
     JAVASCRIPT_JSX(".jsx"),
     GRADLE(".gradle"),
     BAT(".bat"),
@@ -12,5 +13,6 @@ enum class FileExtention constructor(public val key: String) {
     PROPERTIES(".properties"),
     PRO(".pro"),
     JSON(".json"),
-    XML(".xml")
+    XML(".xml"),
+    CSS(".css")
 }

@@ -1,0 +1,7 @@
+
+export class ApplicationStringsUtils {
+
+    public static HOME_CODE_SNIPPET = "#{Name} Code Example"
+    public static HOME_CODE_SNIPPET_DESCRIPTION = "Example of Building Project in #{Name}"
+
+}

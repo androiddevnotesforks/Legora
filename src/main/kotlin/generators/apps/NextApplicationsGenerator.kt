@@ -17,6 +17,7 @@ class NextApplicationsGenerator constructor(
         generateConfigurationFiles()
         generateTailwindConfigurations()
         generateProjectDirectories()
+        generateFiles(fields[ProjectInformationItem.NAME] ?: "")
         if (isTypeScriptLanguage) {
             generateTypeScriptConfiguration()
         }
@@ -71,6 +72,32 @@ class NextApplicationsGenerator constructor(
         generateDirectory("$generatedPath/content/utils", onGeneratedFileListener)
         generateDirectory("$generatedPath/content/content", onGeneratedFileListener)
         generateDirectory("$generatedPath/content/content/models", onGeneratedFileListener)
+
+        generateDirectory("$generatedPath/components/home", onGeneratedFileListener)
+        generateDirectory("$generatedPath/components/common", onGeneratedFileListener)
+    }
+
+    private fun generateFiles(projectName: String) {
+        generateFile("globals", getFileContent("templates/css/next-js-global-style.txt"), FileExtention.CSS, "$generatedPath/styles", onGeneratedFileListener)
+        generateFile("manifest", getFileContent("templates/configurations/next-js-manifest.txt").replace("#{Name}", projectName), FileExtention.JSON, "$generatedPath/public", onGeneratedFileListener)
+        generateFile("index", "", FileExtention.JAVASCRIPT, "$generatedPath/assets", onGeneratedFileListener)
+
+        generateFile("LegoraLayout", getFileContent("templates/next/layout.txt"), FileExtention.TYPESCRIPT_TSX, "$generatedPath/components", onGeneratedFileListener)
+        generateFile("InnerToolbarComponent", getFileContent("templates/next/inner-toolbar.txt").replace("#{Name}", projectName), FileExtention.TYPESCRIPT_TSX, "$generatedPath/components/common", onGeneratedFileListener)
+        generateFile("ToolbarComponent", getFileContent("templates/next/toolbar.txt").replace("#{Name}", projectName), FileExtention.TYPESCRIPT_TSX, "$generatedPath/components/common", onGeneratedFileListener)
+
+        generateFile("HomeCodeSnippetComponent", getFileContent("templates/next/home-code-snippet.txt").replace("#{Name}", projectName), FileExtention.TYPESCRIPT_TSX, "$generatedPath/components/home", onGeneratedFileListener)
+        generateFile("HomeInverseCodeSnippetComponent", getFileContent("templates/next/home-code-snippet-inverse.txt").replace("#{Name}", projectName), FileExtention.TYPESCRIPT_TSX, "$generatedPath/components/home", onGeneratedFileListener)
+        generateFile("HomePageCoverComponent", getFileContent("templates/next/home-cover.txt").replace("#{Name}", projectName), FileExtention.TYPESCRIPT_TSX, "$generatedPath/components/home", onGeneratedFileListener)
+        generateFile("ServicesComponent", getFileContent("templates/next/home-services.txt").replace("#{Name}", projectName), FileExtention.TYPESCRIPT_TSX, "$generatedPath/components/home", onGeneratedFileListener)
+
+
+        generateFile("PagesTitleConstants", getFileContent("templates/next/pages-title-constants.txt").replace("#{Name}", projectName), FileExtention.TYPESCRIPT, "$generatedPath/content/constants", onGeneratedFileListener)
+        generateFile("HomeServicesContent", getFileContent("templates/next/home-services-content.txt").replace("#{Name}", projectName), FileExtention.TYPESCRIPT, "$generatedPath/content/content", onGeneratedFileListener)
+        generateFile("ServiceModel", getFileContent("templates/next/service-model.txt").replace("#{Name}", projectName), FileExtention.TYPESCRIPT, "$generatedPath/content/content/models", onGeneratedFileListener)
+
+        generateFile("ApplicationColors", getFileContent("templates/next/colors.txt").replace("#{Name}", projectName), FileExtention.TYPESCRIPT, "$generatedPath/content/utils", onGeneratedFileListener)
+        generateFile("ApplicationStringsUtils", getFileContent("templates/next/app-snippet-example.txt").replace("#{Name}", projectName), FileExtention.TYPESCRIPT, "$generatedPath/content/utils", onGeneratedFileListener)
     }
 
 }

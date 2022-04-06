@@ -1,0 +1,7 @@
+
+export class PagesTitleConstants {
+
+    public static HOME_PAGE = "#{Name} Website Example";
+    public static HOME_PAGE_DESCRIPTION = "#{Name} Example Website Description"
+
+}
