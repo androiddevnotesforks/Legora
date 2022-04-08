@@ -18,6 +18,7 @@ object ApplicationStrings {
     const val ANDROID_DESCRIPTION_SINGLE = "Single Module App"
     const val ANDROID_DESCRIPTION_MULTI = "Multi Modular App"
     const val ANDROID_DESCRIPTION_JETPACK = "Jetpack Compose App"
+    const val ANDROID_LIBRARY = "Android Library Template"
 
     const val REACT_TITLE = "React Application"
     const val REACT_DESCRIPTION_JS = "JavaScript Language"

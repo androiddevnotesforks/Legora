@@ -16,7 +16,10 @@ class ProjectInformationItem(
         const val PACKAGE = "package"
         const val WEBSITE_URL = "url"
         const val VERSION = "Version"
-        const val SUPPORT_FLAVORS = "supportFlavors"
-        const val SUPPORT_DATABASE = "supportedDatabase"
+        const val ARTIFACE = "Artifact"
+        const val GROUP = "group"
+        const val DESCRIPTION = "description"
+        const val GIT_LINK = "gitlink"
+        const val REPO_NAME = "repoName"
     }
 }

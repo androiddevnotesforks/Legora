@@ -28,7 +28,7 @@ class AndroidApplicationGenerator constructor(
     private fun generateGradleDirectory() {
         generateDirectory("$generatedPath/gradle", onGeneratedFileListener)
         generateDirectory("$generatedPath/gradle/wrapper", onGeneratedFileListener)
-        generateFile("Libraries", getFileContent("templates/gradle/android-gradle-wrapper.txt"), FileExtention.PROPERTIES, "$generatedPath/gradle/wrapper", onGeneratedFileListener)
+        generateFile("gradle-wrapper", getFileContent("templates/gradle/android-gradle-wrapper.txt"), FileExtention.PROPERTIES, "$generatedPath/gradle/wrapper", onGeneratedFileListener)
     }
 
     private fun generateSettingsFile(name: String) {
