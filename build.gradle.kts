@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.yazantarifi.legora"
-version = "1.0.0-alpha"
+version = "1.0.0.alpha"
 
 repositories {
     google()
@@ -31,19 +31,19 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb, TargetFormat.Rpm)
             packageName = "Legora"
-            packageVersion = "1.0.0"
+            packageVersion = "1.0.1"
 
             val iconsRoot = project.file("./images")
             macOS {
-                iconFile.set(iconsRoot.resolve("icon-mac.icns"))
+                iconFile.set(iconsRoot.resolve("rounded_icon.png"))
             }
             windows {
-                iconFile.set(iconsRoot.resolve("icon-windows.ico"))
-                menuGroup = "Compose Examples"
+                iconFile.set(project.file("./images/rounded_icon.ico"))
+                menuGroup = "Legora"
                 upgradeUuid = "18159995-d967-4CD2-8885-77BFA97CFA9F"
             }
             linux {
-                iconFile.set(iconsRoot.resolve("/rounded_icon.png"))
+                iconFile.set(iconsRoot.resolve("rounded_icon.png"))
             }
         }
     }
