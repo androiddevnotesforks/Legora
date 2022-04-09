@@ -19,7 +19,7 @@ object ApplicationProjectsManager {
 //            ProjectItem(ApplicationIcons.KTOR_APP, ApplicationStrings.KTOR_TITLE, ApplicationStrings.KTOR_DESCRIPTION, "", ProjectItem.KTOR),
 //            ProjectItem(ApplicationIcons.NEST_JS, ApplicationStrings.NEST_JS, ApplicationStrings.NEST_JS_DESCRIPTION, "", ProjectItem.NEST_JS),
 //            ProjectItem(ApplicationIcons.SPRING_BOOT, ApplicationStrings.SPRING_BOOT, ApplicationStrings.SPRING_BOOT_DESCRIPTION_J, "", ProjectItem.SPRING_J),
-//            ProjectItem(ApplicationIcons.SPRING_BOOT, ApplicationStrings.SPRING_BOOT, ApplicationStrings.SPRING_BOOT_DESCRIPTION_K, "", ProjectItem.SPRING_K),
+            ProjectItem(ApplicationIcons.SPRING_BOOT, ApplicationStrings.SPRING_BOOT, ApplicationStrings.SPRING_BOOT_DESCRIPTION_K, "", ProjectItem.SPRING_K),
         )
     }
 

@@ -16,14 +16,20 @@ abstract class TemplatingFilesGenerator: MultiFileGenerator() {
     }
 
     protected fun getFileContent(name: String): String {
-        var results = ""
-        val inputStream = FileUtils.getFileFromResourceAsStream(name)
-        inputStream?.let {
-            FileUtils.printInputStream(it) {
-                results += it + "\n"
+        try {
+            var results = ""
+            val inputStream = FileUtils.getFileFromResourceAsStream(name)
+            inputStream?.let {
+                FileUtils.printInputStream(it) {
+                    results += it + "\n"
+                }
             }
+            return results
+        } catch (ex: Exception) {
+            println("Failed, File Not Found : ${ex.message}")
+            ex.printStackTrace()
+            return ""
         }
-        return results
     }
 
 }

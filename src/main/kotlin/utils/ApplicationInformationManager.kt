@@ -13,6 +13,7 @@ object ApplicationInformationManager {
             ProjectItem.ANDROID_LIBRARY_TEMPLATE -> getAndroidLibraryFields()
             ProjectItem.NEXT_JS_APP_TS -> getNextJsFields()
             ProjectItem.REACT_JAVA_SCRIPT -> getReactFields()
+            ProjectItem.SPRING_K -> getSpringBootFields()
             else -> throw ProjectFieldsNotFoundException()
         }
     }
@@ -42,6 +43,16 @@ object ApplicationInformationManager {
             ProjectInformationItem(key = ProjectInformationItem.DESCRIPTION, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Library Description ...", title = "Library Description"),
             ProjectInformationItem(key = ProjectInformationItem.GIT_LINK, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Git Remote Link ...", title = "Remote Link"),
             ProjectInformationItem(key = ProjectInformationItem.REPO_NAME, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Repository Name ...", title = "Repository Name"),
+        )
+    }
+
+    private fun getSpringBootFields(): ArrayList<ProjectInformationItem> {
+        return arrayListOf(
+            ProjectInformationItem(key = ProjectInformationItem.NAME, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Project Name ...", title = "Project Name"),
+            ProjectInformationItem(key = ProjectInformationItem.VERSION, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Project Version ...", title = "Project Version"),
+            ProjectInformationItem(key = ProjectInformationItem.GROUP, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Library Group ...", title = "Library Group"),
+            ProjectInformationItem(key = ProjectInformationItem.ARTIFACE, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Library Artifact ...", title = "Library Artifact"),
+            ProjectInformationItem(key = ProjectInformationItem.DESCRIPTION, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Library Description ...", title = "Library Description"),
         )
     }
 
