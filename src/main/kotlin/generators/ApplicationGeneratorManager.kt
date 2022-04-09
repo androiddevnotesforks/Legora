@@ -6,16 +6,15 @@ import models.ProjectInformationItem
 import models.ProjectItem
 import utils.ApplicationInformationManager
 
-class ApplicationGeneratorManager constructor(
-    private val generatedFilePath: String,
-    private val onGeneratedFileListener: (String) -> Unit,
-    private val onProjectFinishedListener: () -> Unit
-) {
+object ApplicationGeneratorManager {
 
     fun generateProject(
         projectKey: String,
         dependencies: ArrayList<ApplicationDependency>,
-        fields: ArrayList<ProjectInformationItem>
+        fields: ArrayList<ProjectInformationItem>,
+        generatedFilePath: String,
+        onGeneratedFileListener: (String) -> Unit,
+        onProjectFinishedListener: () -> Unit
     ) {
         val projectFields = ApplicationInformationManager.getProjectFields(fields)
         when (projectKey) {

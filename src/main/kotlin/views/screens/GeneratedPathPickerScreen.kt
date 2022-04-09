@@ -62,7 +62,6 @@ fun GeneratedPathPickerScreen(
                         onValueChange = { newText ->
                             generatedPath.value = newText
                         },
-                        enabled = false,
                         singleLine = true
                     )
                     Spacer(Modifier.height(20.dp))
@@ -128,7 +127,10 @@ fun FileDialog(
             override fun setVisible(value: Boolean) {
                 super.setVisible(value)
                 if (value) {
-                    onCloseRequest(File(directory + file).absolutePath)
+                    val path = File(directory + file).absolutePath
+                    if (!path.contains("null")) {
+                        onCloseRequest(path)
+                    }
                 }
             }
         }

@@ -2,12 +2,14 @@ package generators.base
 
 import utils.FileUtils
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 abstract class TemplatingFilesGenerator: MultiFileGenerator() {
 
     override fun execute() = Unit
 
     protected fun generateDirectory(path: String, onMessageGenerated: (String) -> Unit) {
+        TimeUnit.MILLISECONDS.sleep(500)
         if (File(path).mkdir()) {
             onMessageGenerated("Folder Generated Successfully With Path : $path")
         } else {

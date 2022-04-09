@@ -4,10 +4,12 @@ import models.FileExtention
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileWriter
+import java.util.concurrent.TimeUnit
 
 abstract class MultiFileGenerator {
 
     protected fun generateFile(fileName: String, content: String, fileExtention: FileExtention, path: String, onMessageGenerated: (String) -> Unit) {
+        TimeUnit.MILLISECONDS.sleep(500)
         val fileName = fileName + fileExtention.key
         try {
             val file: File = File("$path/$fileName")
