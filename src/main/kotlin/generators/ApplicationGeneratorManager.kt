@@ -1,9 +1,6 @@
 package generators
 
-import generators.apps.AndroidApplicationGenerator
-import generators.apps.AndroidLibraryGenerator
-import generators.apps.NextApplicationsGenerator
-import generators.apps.SpringBootGenerator
+import generators.apps.*
 import models.ApplicationDependency
 import models.ProjectInformationItem
 import models.ProjectItem
@@ -29,6 +26,8 @@ class ApplicationGeneratorManager constructor(
             ProjectItem.NEXT_JS_APP_JS -> NextApplicationsGenerator(false, generatedFilePath, onGeneratedFileListener).generateProject(dependencies, projectFields)
             ProjectItem.SPRING_J -> SpringBootGenerator(false, generatedFilePath, onGeneratedFileListener).generateProject(dependencies, projectFields)
             ProjectItem.SPRING_K -> SpringBootGenerator(true, generatedFilePath, onGeneratedFileListener).generateProject(dependencies, projectFields)
+            ProjectItem.REACT_JAVA_SCRIPT -> ReactGenerator(true, generatedFilePath, onGeneratedFileListener).generateProject(dependencies, projectFields)
+            ProjectItem.REACT_TYPE_SCRIPT -> ReactGenerator(false, generatedFilePath, onGeneratedFileListener).generateProject(dependencies, projectFields)
         }
     }
 

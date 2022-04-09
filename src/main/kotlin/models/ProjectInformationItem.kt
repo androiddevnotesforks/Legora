@@ -21,5 +21,7 @@ class ProjectInformationItem(
         const val DESCRIPTION = "description"
         const val GIT_LINK = "gitlink"
         const val REPO_NAME = "repoName"
+        const val AUTHER = "auther"
+        const val WEBSITE = "website"
     }
 }
