@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.yazantarifi.legora"
-version = "1.0.0"
+version = "1.0.0-alpha"
 
 repositories {
     google()
@@ -29,7 +29,7 @@ compose.desktop {
     application {
         mainClass = "MainKt"
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb, TargetFormat.Rpm, TargetFormat.Pkg)
             packageName = "Legora"
             packageVersion = "1.0.0"
 

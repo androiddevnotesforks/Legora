@@ -23,4 +23,5 @@ sealed class ApplicationRoute(var route: Int, var prevRoute: Int, var nextRoute:
     class ApplicationDependenciesRouter: ApplicationRoute(DEPENDENCIES_SCREEN_ROUTE, APP_INFO_SCREEN_ROUTE, APP_PATH_GENERATED_PICKER)
     class ApplicationPathPickerRouter: ApplicationRoute(APP_PATH_GENERATED_PICKER, DEPENDENCIES_SCREEN_ROUTE, GENERATE_APP_CLASSES)
     class ApplicationGeneratorRouter: ApplicationRoute(GENERATE_APP_CLASSES, NO_SCREEN_POSITION, SUCCESS_SCREEN_ROUTE)
+    class ApplicationSuccessScreenRoute: ApplicationRoute(SUCCESS_SCREEN_ROUTE, NO_SCREEN_POSITION, NO_SCREEN_POSITION)
 }

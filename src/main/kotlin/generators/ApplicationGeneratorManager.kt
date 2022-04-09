@@ -29,6 +29,7 @@ class ApplicationGeneratorManager constructor(
             ProjectItem.REACT_JAVA_SCRIPT -> ReactGenerator(true, generatedFilePath, onGeneratedFileListener).generateProject(dependencies, projectFields)
             ProjectItem.REACT_TYPE_SCRIPT -> ReactGenerator(false, generatedFilePath, onGeneratedFileListener).generateProject(dependencies, projectFields)
         }
+        onProjectFinishedListener()
     }
 
 }

@@ -6,6 +6,7 @@ object ApplicationStrings {
     const val DEPENDENCIES_NOT_FOUND = "No Dependencies Found for Project Key"
     const val APP_NAME = "Legora"
     const val APP_LOGO = "Legora Application Logo"
+    const val APP_SUCCESS = "Legora Application Generated Successfully ... Congratulations"
 
     const val SPLASH_SCREEN_TITLE = "Generate Project Configuration, Source Code Directly"
     const val SPLASH_SCREEN_DESCRIPTION = "Specify Project Type, Information Without Opening IDE"
