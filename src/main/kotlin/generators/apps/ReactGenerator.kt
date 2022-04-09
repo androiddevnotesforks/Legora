@@ -17,6 +17,7 @@ class ReactGenerator constructor(
         val author = fields[ProjectInformationItem.AUTHER] ?: ""
         val description = fields[ProjectInformationItem.DESCRIPTION] ?: ""
         val website = fields[ProjectInformationItem.WEBSITE] ?: ""
+        val version = fields[ProjectInformationItem.VERSION] ?: ""
 
         generateDirectories()
         generateRootFiles()
@@ -27,6 +28,7 @@ class ReactGenerator constructor(
                 .replace("#{Description}", description)
                 .replace("#{Author}", author)
                 .replace("#{Website}", website)
+                .replace("#{Version}", version)
             , FileExtention.JSON,
             generatedPath,
             onGeneratedFileListener

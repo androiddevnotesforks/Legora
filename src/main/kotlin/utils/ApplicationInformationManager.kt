@@ -12,6 +12,7 @@ object ApplicationInformationManager {
             ProjectItem.MULTI_APP_ANDROID -> getAndroidMultiFields()
             ProjectItem.ANDROID_LIBRARY_TEMPLATE -> getAndroidLibraryFields()
             ProjectItem.NEXT_JS_APP_TS -> getNextJsFields()
+            ProjectItem.REACT_JAVA_SCRIPT -> getReactFields()
             else -> throw ProjectFieldsNotFoundException()
         }
     }
@@ -49,6 +50,16 @@ object ApplicationInformationManager {
             ProjectInformationItem(key = ProjectInformationItem.NAME, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Project Name ...", title = "Project Name"),
             ProjectInformationItem(key = ProjectInformationItem.WEBSITE_URL, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Website Url ...", title = "Website Url"),
             ProjectInformationItem(key = ProjectInformationItem.VERSION, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Project Version ...", title = "Website Version"),
+        )
+    }
+
+    private fun getReactFields(): ArrayList<ProjectInformationItem> {
+        return arrayListOf(
+            ProjectInformationItem(key = ProjectInformationItem.NAME, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Project Name ...", title = "Project Name"),
+            ProjectInformationItem(key = ProjectInformationItem.WEBSITE, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Website Url ...", title = "Website Url"),
+            ProjectInformationItem(key = ProjectInformationItem.VERSION, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Project Version ...", title = "Website Version"),
+            ProjectInformationItem(key = ProjectInformationItem.AUTHER, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Project Author ...", title = "Website Author"),
+            ProjectInformationItem(key = ProjectInformationItem.DESCRIPTION, type = ProjectInformationItem.TYPE_TEXT, hint = "Please Enter Project Description ...", title = "Website Description"),
         )
     }
 

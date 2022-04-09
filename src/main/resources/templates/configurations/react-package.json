@@ -1,6 +1,6 @@
 {
   "name": "#{Name}",
-  "version": "1.0.0",
+  "version": "#{Version}",
   "homepage": "#{Website}",
   "private": true,
   "description": "#{Description}",
