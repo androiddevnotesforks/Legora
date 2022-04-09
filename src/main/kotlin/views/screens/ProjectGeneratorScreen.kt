@@ -3,7 +3,9 @@ package views.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
@@ -44,6 +46,7 @@ fun ProjectGeneratorScreen(
     val selectedProjectInformation = ApplicationProjectsManager.getProjectsList().filter { it.key.equals(projectKey) }
     val itemsPath = remember { mutableStateOf(paths) }
     val isListUpdated = remember { mutableStateOf(GeneratorState(isListUpdatedInitValue, false)) }
+    val scrollState = rememberScrollState()
 
     Column(modifier = Modifier.fillMaxWidth().fillMaxHeight()) {
         HeaderComponent()
@@ -68,8 +71,11 @@ fun ProjectGeneratorScreen(
                                 Text("Click on Code Icon To Start Generating Project Source Code", modifier = Modifier.height(0.dp))
                             }
 
-                            Column(modifier = Modifier.padding(top = 35.dp).fillMaxWidth().wrapContentHeight(), verticalArrangement = Arrangement.Top) {
-                                itemsPath.value.forEach {
+                            Column(
+                                modifier = Modifier.padding(top = 35.dp).fillMaxWidth().wrapContentHeight().verticalScroll(scrollState),
+                                verticalArrangement = Arrangement.Top
+                            ) {
+                                itemsPath.value.reversed().forEach {
                                     Text(it, modifier = Modifier.padding(bottom = 5.dp))
                                 }
                             }
