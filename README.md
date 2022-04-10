@@ -43,6 +43,9 @@ This Application Built with Jetpack Compose To Be able to work on Mac, Windows, 
 3. Beta-2 Support More Projects
 4. Version 1.0.0 Stable Support All Projects Mentioned in Supported Frameworks
 
+## Download
+[Alpha Version Download Link](https://github.com/legora-io/Legora/releases/tag/1.0.0-alpha)
+
 # License
 
 Copyright (C) 2022 Legora is An Open Source Library (Licensed under the MIT License)
