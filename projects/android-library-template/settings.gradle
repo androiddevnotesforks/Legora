@@ -1,0 +1,4 @@
+
+rootProject.name = "Palex Adapter"
+include ':app'
+include ':library'

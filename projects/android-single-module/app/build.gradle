@@ -1,0 +1,228 @@
+apply plugin: "${rootProject.ext.AndroidPlugin}"
+apply plugin: "${rootProject.ext.KotlinAndroidPlugin}"
+apply plugin: "${rootProject.ext.KotlinAndroidExPlugin}"
+apply plugin: "${rootProject.ext.KotlinKaptPlugin}"
+apply plugin: "${rootProject.ext.navigationPlugin}"
+apply plugin: "${rootProject.ext.Hilt}"
+apply plugin: "${rootProject.ext.FirebasePlugin}"
+apply plugin: "${rootProject.ext.CrashlyticsPlugin}"
+
+android {
+
+    compileSdkVersion rootProject.ext.compileSdkV
+    buildToolsVersion "${rootProject.ext.BuildToolsVersion}"
+    useLibrary "${rootProject.ext.HttpLegacyEnabled}"
+
+    defaultConfig {
+        applicationId "${rootProject.ext.applicationPackage}"
+        minSdkVersion rootProject.ext.minSdkV
+        targetSdkVersion rootProject.ext.compileSdkV
+        renderscriptTargetApi rootProject.ext.renderscriptTargetApi
+        renderscriptSupportModeEnabled rootProject.ext.renderscriptSupportModeEnabled
+        multiDexEnabled rootProject.ext.MultiDexMergeEnabled
+        versionCode rootProject.ext.VersionCode
+        versionName "${rootProject.ext.ApplicationVersion}"
+        testInstrumentationRunner "${rootProject.ext.AndroidTest}"
+        resConfigs "en", "ar"
+        testInstrumentationRunnerArgument "${rootProject.ext.AndroidRunnerArgument}", "${rootProject.ext.LeakCanaryListener}"
+        manifestPlaceholders = [
+                enableCrashReporting: "false",
+                CrashReportingApiKey: "ApiKeyHere"
+        ]
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            debuggable true
+            ext.enableCrashlytics = false
+            ext.alwaysUpdateBuildId = false
+            proguardFiles getDefaultProguardFile("${rootProject.ext.ProguardFile}"), "${rootProject.ext.Proguard}"
+            buildConfigField "String", "IS_GSM", "\"${isGsm}\""
+        }
+
+        release {
+            minifyEnabled true
+            debuggable false
+            ext.alwaysUpdateBuildId = false
+            ext.enableCrashlytics = true
+            proguardFiles getDefaultProguardFile("${rootProject.ext.ProguardFile}"), "${rootProject.ext.Proguard}"
+            buildConfigField "String", "IS_GSM", "\"${isGsm}\""
+            // signingConfig signingConfigs.release
+        }
+
+    }
+
+    sourceSets {
+        main.java.srcDirs += "${rootProject.ext.KotlinSource}"
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    lintOptions {
+        disable 'ContentDescription',
+                'ObsoleteLintCustomCheck',
+                'CheckResult'
+    }
+
+    applicationVariants.all { variant ->
+        def profileName
+        if (getGradle().getStartParameter().getTaskRequests().toString().contains("Debug")) {
+            profileName = "-Debug Version"
+        } else {
+            profileName = "-Release Version"
+        }
+        def appName = "League ${profileName}"
+        variant.outputs.all { output ->
+            def newApkName
+            newApkName = "${appName}-${rootProject.ext.ApplicationBuildType} -${versionName}.apk"
+            output.outputFileName = new File(newApkName)
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+}
+
+dependencies { configuration ->
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def FirebaseConfiguration = rootProject.ext.FirebaseConfiguration
+    implementation platform("${FirebaseConfiguration.FirebasePlatform}")
+
+    defaultTestingConfiguration(configuration)
+    googlePlayServicesConfiguration(configuration)
+    rxJavaConfiguration(configuration)
+    kotlinCoroutines(configuration)
+    userInterfaceConfiguration(configuration)
+    retrofitConfiguration(configuration)
+    applicationConfiguration(configuration)
+    daggerConfig(configuration)
+    firebaseConfiguration(configuration)
+    moshiConfiguration(configuration)
+    roomConfiguration(configuration)
+    guavaConfiguration(configuration)
+    workManagerConfiguration(configuration)
+}
+
+private void workManagerConfiguration(configuration) {
+    def WorkManagerConfiguration = rootProject.ext.WorkManagerConfiguration
+    configuration.implementation WorkManagerConfiguration.WorkManager
+    configuration.implementation WorkManagerConfiguration.WorkManagerRunTime
+    configuration.implementation WorkManagerConfiguration.Gcm
+}
+
+private void guavaConfiguration(configuration) {
+    def GuavaConfiguration = rootProject.ext.GuavaConfiguration
+    configuration.implementation GuavaConfiguration.Guava
+    configuration.implementation GuavaConfiguration.GuavaAndroid
+    configuration.api GuavaConfiguration.GuavaApi
+    configuration.api GuavaConfiguration.GuavaAndroidApi
+}
+
+private void roomConfiguration(configuration) {
+    def RoomConfiguration = rootProject.ext.RoomConfiguration
+    configuration.implementation RoomConfiguration.RoomRunTime
+    configuration.implementation RoomConfiguration.RoomPaging
+    configuration.kapt RoomConfiguration.RoomCompiler
+}
+
+private void moshiConfiguration(configuration) {
+    def MoshiConfiguration = rootProject.ext.MoshiConfiguration
+    configuration.implementation MoshiConfiguration.MoshiRetrofitAdapter
+    configuration.implementation MoshiConfiguration.RetrofitCorotinesAdapter
+    configuration.kapt MoshiConfiguration.JvmMetaData
+    configuration.kapt MoshiConfiguration.MoshiCodegen
+}
+
+private void firebaseConfiguration(configuration) {
+    configuration.implementation FirebaseConfiguration.FirebaseCrashlytics
+    configuration.implementation FirebaseConfiguration.FirebaseAnalytics
+    configuration.implementation FirebaseConfiguration.FirebaseMessaging
+    configuration.implementation FirebaseConfiguration.FirebaseFunctions
+}
+
+private void googlePlayServicesConfiguration(configuration) {
+    def GooglePlayServices = rootProject.ext.GooglePlayServices
+    configuration.implementation GooglePlayServices.GoogleMaps
+    configuration.implementation GooglePlayServices.GooglePlaces
+    configuration.implementation GooglePlayServices.GoogleGcm
+    configuration.implementation GooglePlayServices.GoogleLocations
+}
+
+private void rxJavaConfiguration(configuration) {
+    def RxConfiguration = rootProject.ext.RxConfiguration
+    configuration.implementation RxConfiguration.RxJava
+    configuration.implementation RxConfiguration.RxAndroid
+}
+
+private void kotlinCoroutines(configuration) {
+    def KotlinCoroutinesConfiguration = rootProject.ext.KotlinCoroutinesConfiguration
+    configuration.implementation KotlinCoroutinesConfiguration.Coroutines
+    configuration.implementation KotlinCoroutinesConfiguration.AndroidCoroutines
+}
+
+private void userInterfaceConfiguration(configuration) {
+    def UiConfiguration = rootProject.ext.UiConfiguration
+    configuration.implementation UiConfiguration.RecyclerView
+    configuration.implementation UiConfiguration.SupportCompat
+    configuration.implementation UiConfiguration.SupportCore
+    configuration.implementation UiConfiguration.SupportCoreUi
+    configuration.implementation UiConfiguration.SupportFragment
+    configuration.implementation UiConfiguration.AndroidCore
+    configuration.implementation UiConfiguration.CardView
+    configuration.implementation UiConfiguration.AppCompat
+    configuration.implementation UiConfiguration.GoogleMaterial
+    configuration.implementation UiConfiguration.Constraintlayout
+    configuration.implementation UiConfiguration.NavigationFragment
+    configuration.implementation UiConfiguration.NavigationUI
+    configuration.implementation UiConfiguration.FragmentKtx
+    configuration.implementation UiConfiguration.Glide
+    configuration.kapt UiConfiguration.GlideAnnotations
+}
+
+private void retrofitConfiguration(configuration) {
+    def DataConfiguration = rootProject.ext.DataConfiguration
+    configuration.implementation DataConfiguration.Retrofit
+    configuration.implementation DataConfiguration.RetrofitRxJavaAdapter
+    configuration.implementation DataConfiguration.RetrofitIntercenptor
+    configuration.implementation DataConfiguration.retrofitGsonConverter
+    configuration.implementation DataConfiguration.Moshi
+}
+
+private void applicationConfiguration(configuration) {
+    def ApplicationConfiguration = rootProject.ext.ApplicationConfiguration
+    configuration.implementation ApplicationConfiguration.Timber
+    configuration.implementation ApplicationConfiguration.MultiDexApp
+    configuration.implementation ApplicationConfiguration.KotlinJdk
+}
