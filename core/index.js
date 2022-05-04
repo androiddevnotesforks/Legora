@@ -20,4 +20,10 @@
  * Project Website https://legora.me
  *
  */
+import getSupportedProjects from "./providers/ProjectsProvider.mjs";
+
+console.log("Legora Test Mode ========================================================================")
 console.log("Legora index.js Started !!")
+console.log("Legora Print Supported Projects")
+console.log(getSupportedProjects())
+console.log("Legora Test Mode ========================================================================")
