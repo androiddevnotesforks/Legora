@@ -6,7 +6,8 @@
   "type": "module",
   "private": false,
   "scripts": {
-    "lint": "./node_modules/.bin/eslint"
+    "lint": "./node_modules/.bin/eslint",
+    "run": "node --experimental-modules index.js"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
