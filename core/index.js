@@ -27,3 +27,64 @@ console.log("Legora index.js Started !!")
 console.log("Legora Print Supported Projects")
 console.log(getSupportedProjects())
 console.log("Legora Test Mode ========================================================================")
+
+/**
+ * This Method Used to Start Legora Generator To Pick The Generator with Project Key and Start Executing The Build Files
+ * This Method is the Main Method in the Library
+ * @param generatePath -> The Path to Generate the Project
+ * @param projectKey -> The Project you Want to Generate
+ * @param dependencies -> The Required Dependencies to The Project
+ * @param information -> The Fields in ProjectInformationProvider File
+ */
+export default function onLegoraGeneratorExecute(
+    generatePath = "",
+    projectKey = "",
+    dependencies = {},
+    information = {}
+) {
+    console.log("Legora Generator Started ...")
+    console.log("Project Info : ", generatePath, projectKey)
+}
+
+/**
+ * Desktop Application is Used to Send One String with All Picked Items and This Method Will Start Splitting The Query
+ * To Objects To Start the Generator
+ *
+ * This Method Should be Called from the CLI once Started From Desktop Application
+ * @param query
+ */
+export function onLegoraExtractTerminalCommand(query = "") {
+    const information = {};
+    const dependencies = {};
+    let projectKey = ""
+    let generatedPath = ""
+
+    // Extract The Project Informations Here
+    const querySegments = query.replace("generate ", "").split("-args")
+    console.log("Legora Terminal Command Query Segments : " + querySegments)
+
+    // Validation Checks
+    if (!projectKey) {
+        throw 'projectKey is Not Provided';
+    }
+
+    if (!generatedPath) {
+        throw 'generatedPath is Not Provided';
+    }
+
+    if (!information) {
+        throw 'information is Not Provided';
+    }
+
+    // After Extracting the Values, Start the Generator
+    onLegoraGeneratorExecute(generatedPath, projectKey, dependencies, information)
+}
+
+/**
+ * Hardcoded Example To Generate the Project
+ * This Example is Just working on Development Mode to Provide Example on Generator Query
+ */
+const generatorQuery = "generate -args[projectKey:SINGLE_APP_ANDROID] -args[generatedPath:D:\\Test Generator] -args[information][key:value] -args[information][key:value] -args[dependencies][key:value]"
+onLegoraExtractTerminalCommand(generatorQuery)
+
+

@@ -5,7 +5,7 @@
 import {
     ANDROID_LIBRARY_TEMPLATE,
     COMPOSE_APP_ANDROID, DESKTOP_COMPOSE, GRADLE_PLUGIN, KTOR,
-    MULTI_APP_ANDROID, NEXT_JS_APP_JS, NEXT_JS_APP_TS,
+    MULTI_APP_ANDROID, NEST_JS, NEXT_JS_APP_JS, NEXT_JS_APP_TS,
     Project, REACT_JAVA_SCRIPT, REACT_TYPE_SCRIPT,
     SINGLE_APP_ANDROID, SPRING_JAVA, SPRING_KOTLIN
 } from "../models/ProjectModel.mjs";
@@ -40,7 +40,7 @@ export default function getSupportedProjects() {
         new Project(KTOR_TITLE, KTOR_DESCRIPTION, KTOR_ICON, KTOR, ""),
 
         // NestJs Projects
-        new Project(NEST_JS, NEST_JS_DESCRIPTION, NEST_JS_ICON, NEST_JS, ""),
+        new Project(NEST_JS_TITLE, NEST_JS_DESCRIPTION, NEST_JS_ICON, NEST_JS, ""),
 
         //TODO:(Yazan) Add CLI's and Express Once Above Done
     ];
@@ -90,7 +90,7 @@ export const KTOR_DESCRIPTION = "Kotlin Language";
 /**
  * Nest Js Constants
  */
-export const NEST_JS = "NestJs Application";
+export const NEST_JS_TITLE = "NestJs Application";
 export const NEST_JS_DESCRIPTION = "TypeScript Language";
 
 /**
