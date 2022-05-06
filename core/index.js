@@ -21,6 +21,7 @@
  *
  */
 import getSupportedProjects from "./providers/ProjectsProvider.mjs";
+import getProjectGenerator from "./generators/LegoraGeneratorManager.mjs";
 
 console.log("Legora Test Mode ========================================================================")
 console.log("Legora index.js Started !!")
@@ -39,11 +40,12 @@ console.log("Legora Test Mode ==================================================
 export default function onLegoraGeneratorExecute(
     generatePath = "",
     projectKey = "",
-    dependencies = {},
-    information = {}
+    dependencies = new Map(),
+    information = new Map()
 ) {
     console.log("Legora Generator Started ...")
     console.log("Project Info : ", generatePath, projectKey)
+    getProjectGenerator(generatePath, projectKey, dependencies, information)
 }
 
 /**
@@ -54,14 +56,36 @@ export default function onLegoraGeneratorExecute(
  * @param query
  */
 export function onLegoraExtractTerminalCommand(query = "") {
-    const information = {};
-    const dependencies = {};
+    const information = new Map();
+    const dependencies = new Map();
     let projectKey = ""
     let generatedPath = ""
 
     // Extract The Project Informations Here
     const querySegments = query.replace("generate ", "").split("-args")
     console.log("Legora Terminal Command Query Segments : " + querySegments)
+    for (let i = 0; i < querySegments.length; i++) {
+        console.log("Legora Query Segment : " + querySegments[i])
+        if (querySegments[i].includes("projectKey")) {
+            projectKey = querySegments[i].split(":")[1].replace("]", "").trim()
+        }
+
+        if (querySegments[i].includes("generatedPath")) {
+            generatedPath = querySegments[i].split("[generatedPath:")[1].replace("]", "").trim()
+        }
+
+        if (querySegments[i].includes("information")) {
+            const keyValue = querySegments[i].trim().split("[")[2].replace("]", "").trim()
+            const keyValueSegments = keyValue.split(":")
+            information.set(keyValueSegments[0], keyValueSegments[1])
+        }
+
+        if (querySegments[i].includes("dependencies")) {
+            const keyValue = querySegments[i].trim().split("[")[2].replace("]", "").trim()
+            const keyValueSegments = keyValue.split(":")
+            dependencies.set(keyValueSegments[0], keyValueSegments[1])
+        }
+    }
 
     // Validation Checks
     if (!projectKey) {
