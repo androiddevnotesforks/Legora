@@ -1,8 +1,15 @@
+import ejs from 'ejs';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 /**
  * All Files Utils in this File Here to Generate Files
  */
 export default function generateFileFromTemplate(data = {}, templateFile = "", generatedPath = "") {
-    ejs.renderFile(templateFile, data, (err, result) => {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    ejs.renderFile(__dirname + templateFile, data, (err, result) => {
         if (err) {
             console.log('info', 'error encountered: ' + err);
         } else {
@@ -16,4 +23,8 @@ export default function generateFileFromTemplate(data = {}, templateFile = "", g
 
         }
     });
+}
+
+export function convertTextToInputString(value) {
+    return "\"" + value + "\""
 }
