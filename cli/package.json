@@ -1,0 +1,53 @@
+{
+  "name": "legora-cli",
+  "version": "1.1.0",
+  "description": "A Project Generator Source Code To Generate A lot Of Frameworks By Using Website, CLI, Desktop Application",
+  "main": "index.js",
+  "type": "module",
+  "private": false,
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint"
+  },
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0"
+  },
+  "engines": {
+    "node": "14.17.2",
+    "npm": "6.14.13"
+  },
+  "author": {
+    "name": "Yazan Tarifi",
+    "email": "yazantarifi1@hotmail.com",
+    "url": "https://www.yazantarifi.com"
+  },
+  "contributors": [
+    {
+      "name": "Yazan Tarifi",
+      "email": "yazantarifi1@hotmail.com",
+      "url": "https://www.yazantarifi.com"
+    }
+  ],
+  "bugs": "https://github.com/Yazan98/Legora/labels/bug",
+  "homepage": "https://legora.me",
+  "license": "MIT",
+  "keywords": [
+    "Source Code Generation",
+    "Generate Source Code",
+    "Project Starter",
+    "Application Starter",
+    "Android Generator",
+    "Spring Boot Generator",
+    "React Generator",
+    "NextJs Generator",
+    "Jetpack Compose Desktop Generator"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yazan98/Legora.git"
+  }
+}
